@@ -12,8 +12,41 @@
 		768DBE1A20374C23009B011A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768DBE1820374C23009B011A /* Main.storyboard */; };
 		768DBE1C20374C23009B011A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768DBE1B20374C23009B011A /* Assets.xcassets */; };
 		768DBE1F20374C23009B011A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768DBE1D20374C23009B011A /* LaunchScreen.storyboard */; };
+		76CDFF4020375EA50060CDEE /* VideoPreviewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDFF3F20375E890060CDEE /* VideoPreviewer.framework */; };
+		76CDFF4120375EA50060CDEE /* VideoPreviewer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDFF3F20375E890060CDEE /* VideoPreviewer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF56F7F05419003B4BFF0623 /* Pods_DJIDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E48416157153ACCC3AC1A6 /* Pods_DJIDemo.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		76CDFF3E20375E890060CDEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76CDFF3A20375E880060CDEE /* VideoPreviewer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 02A543FD1C3C51CB0083C11B;
+			remoteInfo = VideoPreviewer;
+		};
+		76CDFF4220375EA50060CDEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76CDFF3A20375E880060CDEE /* VideoPreviewer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 02A543FC1C3C51CB0083C11B;
+			remoteInfo = VideoPreviewer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		76CDFF4420375EA60060CDEE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				76CDFF4120375EA50060CDEE /* VideoPreviewer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0D12EF1A853365E794425E37 /* Pods-DJIDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJIDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DJIDemo/Pods-DJIDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -25,6 +58,7 @@
 		768DBE1B20374C23009B011A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		768DBE1E20374C23009B011A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		768DBE2020374C23009B011A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76CDFF3A20375E880060CDEE /* VideoPreviewer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VideoPreviewer.xcodeproj; path = VideoPreviewer/VideoPreviewer.xcodeproj; sourceTree = "<group>"; };
 		A8E48416157153ACCC3AC1A6 /* Pods_DJIDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DJIDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -33,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76CDFF4020375EA50060CDEE /* VideoPreviewer.framework in Frameworks */,
 				EF56F7F05419003B4BFF0623 /* Pods_DJIDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +106,14 @@
 			path = DJIDemo;
 			sourceTree = "<group>";
 		};
+		76CDFF3B20375E880060CDEE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				76CDFF3F20375E890060CDEE /* VideoPreviewer.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		770FED80CC2F95DBCF888958 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +126,7 @@
 		7F03C321E9815A9A142E6A3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76CDFF3A20375E880060CDEE /* VideoPreviewer.xcodeproj */,
 				A8E48416157153ACCC3AC1A6 /* Pods_DJIDemo.framework */,
 			);
 			name = Frameworks;
@@ -101,10 +145,12 @@
 				768DBE0F20374C23009B011A /* Resources */,
 				341FB28C58CA2D3C7842C8F2 /* [CP] Embed Pods Frameworks */,
 				1D54016E4B99CB60111158F2 /* [CP] Copy Pods Resources */,
+				76CDFF4420375EA60060CDEE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				76CDFF4320375EA50060CDEE /* PBXTargetDependency */,
 			);
 			name = DJIDemo;
 			productName = DJIDemo;
@@ -138,12 +184,28 @@
 			mainGroup = 768DBE0820374C23009B011A;
 			productRefGroup = 768DBE1220374C23009B011A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 76CDFF3B20375E880060CDEE /* Products */;
+					ProjectRef = 76CDFF3A20375E880060CDEE /* VideoPreviewer.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				768DBE1020374C23009B011A /* DJIDemo */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		76CDFF3F20375E890060CDEE /* VideoPreviewer.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VideoPreviewer.framework;
+			remoteRef = 76CDFF3E20375E890060CDEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		768DBE0F20374C23009B011A /* Resources */ = {
@@ -223,6 +285,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		76CDFF4320375EA50060CDEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VideoPreviewer;
+			targetProxy = 76CDFF4220375EA50060CDEE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		768DBE1820374C23009B011A /* Main.storyboard */ = {

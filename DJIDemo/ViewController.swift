@@ -114,8 +114,7 @@ class ViewController: UIViewController, DJISDKManagerDelegate,DJIAppActivationMa
             } else {
                 print("logout success")
             }
-        }
-        
+        }        
     }
     
     
