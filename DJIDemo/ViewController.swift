@@ -9,17 +9,29 @@
 import UIKit
 import DJISDK
 
-class ViewController: UIViewController, DJISDKManagerDelegate,DJIAppActivationManagerDelegate {
+class ViewController: UIViewController, DJISDKManagerDelegate,DJIAppActivationManagerDelegate,DJIVideoFeedListener, DJICameraDelegate {
 
     @IBOutlet weak var bindingStateLabel: UILabel!
     @IBOutlet weak var appActivationLabel: UILabel!
     var activationState:DJIAppActivationState!
     var aircraftBindingState:DJIAppActivationAircraftBindingState!
     
+    @IBOutlet weak var fpvView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerApp()
         self.updateUI()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let camera = self.fetchCamera()
+        if((camera != nil) && (camera?.delegate?.isEqual(self))!){
+            camera?.delegate = nil
+        }
+        self.resetVideoPreview()
     }
     
     func registerApp(){
@@ -115,6 +127,110 @@ class ViewController: UIViewController, DJISDKManagerDelegate,DJIAppActivationMa
                 print("logout success")
             }
         }        
+    }
+    
+    func setupVideoPreviewer() {
+        
+        VideoPreviewer.instance().setView(self.fpvView)
+        let product = DJISDKManager.product();
+        
+        //Use "SecondaryVideoFeed" if the DJI Product is A3, N3, Matrice 600, or Matrice 600 Pro, otherwise, use "primaryVideoFeed".
+        if ((product?.model == DJIAircraftModelNameA3)
+            || (product?.model == DJIAircraftModelNameN3)
+            || (product?.model == DJIAircraftModelNameMatrice600)
+            || (product?.model == DJIAircraftModelNameMatrice600Pro)){
+            DJISDKManager.videoFeeder()?.secondaryVideoFeed.add(self, with: nil)
+        }else{
+            DJISDKManager.videoFeeder()?.primaryVideoFeed.add(self, with: nil)
+        }
+        VideoPreviewer.instance().start()
+    }
+    
+    func resetVideoPreview() {
+        VideoPreviewer.instance().unSetView()
+        let product = DJISDKManager.product();
+        
+        //Use "SecondaryVideoFeed" if the DJI Product is A3, N3, Matrice 600, or Matrice 600 Pro, otherwise, use "primaryVideoFeed".
+        if ((product?.model == DJIAircraftModelNameA3)
+            || (product?.model == DJIAircraftModelNameN3)
+            || (product?.model == DJIAircraftModelNameMatrice600)
+            || (product?.model == DJIAircraftModelNameMatrice600Pro)){
+            DJISDKManager.videoFeeder()?.secondaryVideoFeed.remove(self)
+        }else{
+            DJISDKManager.videoFeeder()?.primaryVideoFeed.remove(self)
+        }
+    }
+    
+    func fetchCamera() -> DJICamera? {
+        let product = DJISDKManager.product()
+        
+        if (product == nil) {
+            return nil
+        }
+        
+        if (product!.isKind(of: DJIAircraft.self)) {
+            return (product as! DJIAircraft).camera
+        } else if (product!.isKind(of: DJIHandheld.self)) {
+            return (product as! DJIHandheld).camera
+        }
+        return nil
+    }
+    
+    func showAlertViewWithTitle(title: String, withMessage message: String) {
+        
+        let alert = UIAlertController.init(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction.init(title:"OK", style: UIAlertActionStyle.default, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    // DJISDKManagerDelegate Methods
+    func productConnected(_ product: DJIBaseProduct?) {
+        
+        NSLog("Product Connected")
+        
+        if (product != nil) {
+            let camera = self.fetchCamera()
+            if (camera != nil) {
+                camera!.delegate = self
+            }
+            self.setupVideoPreviewer()
+        }
+        
+        //If this demo is used in China, it's required to login to your DJI account to activate the application. Also you need to use DJI Go app to bind the aircraft to your DJI account. For more details, please check this demo's tutorial.
+        DJISDKManager.userAccountManager().logIntoDJIUserAccount(withAuthorizationRequired: false) { (state, error) in
+            if(error != nil){
+                NSLog("Login failed: %@" + String(describing: error))
+            }
+        }
+        
+    }
+    
+    func productDisconnected() {
+        
+        NSLog("Product Disconnected")
+        
+        let camera = self.fetchCamera()
+        if((camera != nil) && (camera?.delegate?.isEqual(self))!){
+            camera?.delegate = nil
+        }
+        self.resetVideoPreview()
+    }
+    
+    // DJICameraDelegate Method
+    func camera(_ camera: DJICamera, didUpdate cameraState: DJICameraSystemState) {
+        print(cameraState.mode)
+    }
+    
+    // DJIVideoFeedListener Method
+    func videoFeed(_ videoFeed: DJIVideoFeed, didUpdateVideoData rawData: Data) {
+        
+        let videoData = rawData as NSData
+        let videoBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: videoData.length)
+        videoData.getBytes(videoBuffer, length:videoData.length)
+        VideoPreviewer.instance().push(videoBuffer, length: Int32(videoData.length))
+        
     }
     
     
