@@ -14,8 +14,6 @@
 		768DBE1F20374C23009B011A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768DBE1D20374C23009B011A /* LaunchScreen.storyboard */; };
 		76CDFF4020375EA50060CDEE /* VideoPreviewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDFF3F20375E890060CDEE /* VideoPreviewer.framework */; };
 		76CDFF4120375EA50060CDEE /* VideoPreviewer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDFF3F20375E890060CDEE /* VideoPreviewer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		76CDFF4A20377D840060CDEE /* DJICameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDFF4920377D840060CDEE /* DJICameraViewController.swift */; };
-		76CDFF4D2037CDD90060CDEE /* DJIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDFF4C2037CDD90060CDEE /* DJIManager.swift */; };
 		EF56F7F05419003B4BFF0623 /* Pods_DJIDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E48416157153ACCC3AC1A6 /* Pods_DJIDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,8 +60,6 @@
 		768DBE2020374C23009B011A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76CDFF3A20375E880060CDEE /* VideoPreviewer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VideoPreviewer.xcodeproj; path = VideoPreviewer/VideoPreviewer.xcodeproj; sourceTree = "<group>"; };
 		76CDFF45203775A40060CDEE /* DJIDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DJIDemo-Bridging-Header.h"; sourceTree = "<group>"; };
-		76CDFF4920377D840060CDEE /* DJICameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJICameraViewController.swift; sourceTree = "<group>"; };
-		76CDFF4C2037CDD90060CDEE /* DJIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIManager.swift; sourceTree = "<group>"; };
 		A8E48416157153ACCC3AC1A6 /* Pods_DJIDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DJIDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -103,8 +99,6 @@
 			children = (
 				768DBE1420374C23009B011A /* AppDelegate.swift */,
 				768DBE1620374C23009B011A /* ViewController.swift */,
-				76CDFF4C2037CDD90060CDEE /* DJIManager.swift */,
-				76CDFF4920377D840060CDEE /* DJICameraViewController.swift */,
 				768DBE1820374C23009B011A /* Main.storyboard */,
 				768DBE1B20374C23009B011A /* Assets.xcassets */,
 				768DBE1D20374C23009B011A /* LaunchScreen.storyboard */,
@@ -288,8 +282,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76CDFF4A20377D840060CDEE /* DJICameraViewController.swift in Sources */,
-				76CDFF4D2037CDD90060CDEE /* DJIManager.swift in Sources */,
 				768DBE1720374C23009B011A /* ViewController.swift in Sources */,
 				768DBE1520374C23009B011A /* AppDelegate.swift in Sources */,
 			);
