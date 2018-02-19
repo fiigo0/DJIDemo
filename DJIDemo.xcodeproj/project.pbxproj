@@ -14,6 +14,9 @@
 		768DBE1F20374C23009B011A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768DBE1D20374C23009B011A /* LaunchScreen.storyboard */; };
 		76CDFF4020375EA50060CDEE /* VideoPreviewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDFF3F20375E890060CDEE /* VideoPreviewer.framework */; };
 		76CDFF4120375EA50060CDEE /* VideoPreviewer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDFF3F20375E890060CDEE /* VideoPreviewer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		76CDFF512037DA5D0060CDEE /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDFF502037DA5D0060CDEE /* WaypointViewController.swift */; };
+		76CDFF54203B6AE60060CDEE /* DJIMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDFF53203B6AE60060CDEE /* DJIMapController.swift */; };
+		76CDFF56203B7D130060CDEE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDFF55203B7D130060CDEE /* MapKit.framework */; };
 		EF56F7F05419003B4BFF0623 /* Pods_DJIDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E48416157153ACCC3AC1A6 /* Pods_DJIDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +63,9 @@
 		768DBE2020374C23009B011A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76CDFF3A20375E880060CDEE /* VideoPreviewer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VideoPreviewer.xcodeproj; path = VideoPreviewer/VideoPreviewer.xcodeproj; sourceTree = "<group>"; };
 		76CDFF45203775A40060CDEE /* DJIDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DJIDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		76CDFF502037DA5D0060CDEE /* WaypointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
+		76CDFF53203B6AE60060CDEE /* DJIMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIMapController.swift; sourceTree = "<group>"; };
+		76CDFF55203B7D130060CDEE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A8E48416157153ACCC3AC1A6 /* Pods_DJIDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DJIDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -69,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76CDFF4020375EA50060CDEE /* VideoPreviewer.framework in Frameworks */,
+				76CDFF56203B7D130060CDEE /* MapKit.framework in Frameworks */,
 				EF56F7F05419003B4BFF0623 /* Pods_DJIDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +106,8 @@
 			children = (
 				768DBE1420374C23009B011A /* AppDelegate.swift */,
 				768DBE1620374C23009B011A /* ViewController.swift */,
+				76CDFF502037DA5D0060CDEE /* WaypointViewController.swift */,
+				76CDFF53203B6AE60060CDEE /* DJIMapController.swift */,
 				768DBE1820374C23009B011A /* Main.storyboard */,
 				768DBE1B20374C23009B011A /* Assets.xcassets */,
 				768DBE1D20374C23009B011A /* LaunchScreen.storyboard */,
@@ -128,6 +137,7 @@
 		7F03C321E9815A9A142E6A3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76CDFF55203B7D130060CDEE /* MapKit.framework */,
 				76CDFF3A20375E880060CDEE /* VideoPreviewer.xcodeproj */,
 				A8E48416157153ACCC3AC1A6 /* Pods_DJIDemo.framework */,
 			);
@@ -173,6 +183,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -284,6 +299,8 @@
 			files = (
 				768DBE1720374C23009B011A /* ViewController.swift in Sources */,
 				768DBE1520374C23009B011A /* AppDelegate.swift in Sources */,
+				76CDFF54203B6AE60060CDEE /* DJIMapController.swift in Sources */,
+				76CDFF512037DA5D0060CDEE /* WaypointViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
