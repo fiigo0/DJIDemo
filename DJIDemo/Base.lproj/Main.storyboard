@@ -117,6 +117,14 @@
                                     <action selector="editButton:" destination="B2H-4b-Rb7" eventType="touchUpInside" id="Nbx-5W-ELb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nv-IP-3Wa">
+                                <rect key="frame" x="84" y="58" width="108" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Focus Map"/>
+                                <connections>
+                                    <action selector="focusMapAction:" destination="B2H-4b-Rb7" eventType="touchUpInside" id="OA7-Rd-Lfh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="YY3-fv-DZc"/>

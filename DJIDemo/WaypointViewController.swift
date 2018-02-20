@@ -9,11 +9,12 @@
 import UIKit
 import DJISDK
 
-class WaypointViewController: UIViewController, DJISDKManagerDelegate, DJIAppActivationManagerDelegate, MKMapViewDelegate {
+class WaypointViewController: UIViewController, DJISDKManagerDelegate, DJIAppActivationManagerDelegate, MKMapViewDelegate,CLLocationManagerDelegate {
 
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var mapView: MKMapView!
-    let locationManager = CLLocationManager()
+    var locationManager:CLLocationManager?
+    var userLocation:CLLocationCoordinate2D?
     let mapController = DJIMapController()
     
     var activationState:DJIAppActivationState!
@@ -31,14 +32,67 @@ class WaypointViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         
         mapView.delegate = self
         mapView?.showsUserLocation = true
-        self.requestLocationAccess()
+        
+        self.userLocation = kCLLocationCoordinate2DInvalid
+        
+        //
+//        self.requestLocationAccess()
+//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        self.locationManager.distanceFilter = 0.1;
+        //
         tapGestureRecog = UITapGestureRecognizer(target: self, action: #selector(self.addWaypoints(_:)))
         tapGestureRecog?.numberOfTapsRequired = 1
         tapGestureRecog?.numberOfTouchesRequired = 1
         self.mapView.addGestureRecognizer(self.tapGestureRecog!)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.startUpdateLocation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.locationManager?.stopUpdatingLocation()
+    }
 
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    func startUpdateLocation() {
+        
+        if CLLocationManager.locationServicesEnabled(){
+            if self.locationManager == nil {
+                self.locationManager = CLLocationManager()
+                self.locationManager?.delegate = self
+                self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+                self.locationManager?.distanceFilter = 0.1
+                self.locationManager?.requestAlwaysAuthorization()
+                self.locationManager?.startUpdatingLocation()
+            }else {
+                let alertController = UIAlertController(title: nil, message: "Takes the appearance of the bottom bar if specified; otherwise, same as UIActionSheetStyleDefault.", preferredStyle: .actionSheet)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+                
+                }
+                alertController.addAction(cancelAction)
+                
+                let OKAction = UIAlertAction(title: "OK", style: .default) { action in
+                
+                }
+                alertController.addAction(OKAction)
+                
+                
+                self.present(alertController, animated: true) {
+                    
+                }
+            }
+        }
+        
+        
+    }
     
     @objc func addWaypoints(_ tapGesture:UITapGestureRecognizer) {
         
@@ -60,12 +114,6 @@ class WaypointViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
             return pinView
         }
         return nil
-    }
-    
-    
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
     }
     
     func registerApp(){
@@ -120,7 +168,7 @@ class WaypointViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
             print("location access denied")
             
         default:
-            locationManager.requestWhenInUseAuthorization()
+            locationManager?.requestWhenInUseAuthorization()
         }
     }
     
@@ -135,6 +183,20 @@ class WaypointViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         }
         
         self.isEditingPoints = !self.isEditingPoints;
+    }
+    
+    @IBAction func focusMapAction(_ sender: UIButton) {
+        if CLLocationCoordinate2DIsValid(self.userLocation!){
+            let span = MKCoordinateSpanMake(0.001, 0.001)
+            let region = MKCoordinateRegion(center: self.userLocation!, span: span)
+            self.mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        self.userLocation = location?.coordinate
     }
     
     
