@@ -7,5 +7,8 @@ target 'DJIDemo' do
 
   # Pods for DJIDemo
   pod 'DJI-SDK-iOS', '~> 4.0’
-
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Crash'
+  pod 'Firebase/Database'
 end

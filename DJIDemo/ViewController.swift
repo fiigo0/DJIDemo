@@ -187,7 +187,7 @@ class ViewController: UIViewController, DJISDKManagerDelegate,DJIAppActivationMa
     
     // DJISDKManagerDelegate Methods
     func productConnected(_ product: DJIBaseProduct?) {
-        
+        self.addLog(message: "Product connected")
         NSLog("Product Connected")
         
         if (product != nil) {
@@ -231,6 +231,10 @@ class ViewController: UIViewController, DJISDKManagerDelegate,DJIAppActivationMa
         videoData.getBytes(videoBuffer, length:videoData.length)
         VideoPreviewer.instance().push(videoBuffer, length: Int32(videoData.length))
         
+    }
+    
+    func addLog(message:String) {
+        FBManager.sharedInstance.addLog(message: message)
     }
     
     

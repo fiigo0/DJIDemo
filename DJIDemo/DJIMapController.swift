@@ -13,6 +13,8 @@ class DJIMapController: NSObject, MKMapViewDelegate {
     
     static let sharedInstance = DJIMapController()
     
+    var aircraftAnnotation:DJIAircraftAnnotation?
+    
     var editPoints:[CLLocation] = []
 
     var wayPoints:[CLLocation] = []
@@ -39,8 +41,36 @@ class DJIMapController: NSObject, MKMapViewDelegate {
     func cleanAllPointsWithMapView(mapView:MKMapView){
         editPoints.removeAll()
         let annos = mapView.annotations
-        mapView.removeAnnotations(annos)
+        
+        for an in annos {
+            if !(an.isEqual(self.aircraftAnnotation)){
+                mapView.removeAnnotation(an)
+            }
+        }
     }
+    
+    /**
+     *  Update Aircraft's location in Map View
+     */
+    
+    func updateAircraftLocation(location:CLLocationCoordinate2D, withMapView mapView:MKMapView) {
+        if self.aircraftAnnotation == nil {
+            self.aircraftAnnotation = DJIAircraftAnnotation.init(coordinate: location)
+            mapView.addAnnotation(self.aircraftAnnotation!)
+        }
+        self.aircraftAnnotation?.setCoordinate(coordinate: location)
+    }
+    
+    /**
+     *  Update Aircraft's heading in Map View
+     */
+    
+    func updateAircraftHeading(heading:Float) {
+        if (self.aircraftAnnotation != nil) {
+            self.aircraftAnnotation?.updateHeading(heading: heading)
+        }
+    }
+    
     
     
     

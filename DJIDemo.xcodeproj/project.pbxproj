@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		760D0834203CD41600E2993E /* DJIAircraftAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760D0833203CD41600E2993E /* DJIAircraftAnnotationView.swift */; };
+		760D0836203CD61E00E2993E /* drone.png in Resources */ = {isa = PBXBuildFile; fileRef = 760D0835203CD61E00E2993E /* drone.png */; };
+		760D0838203CD6BE00E2993E /* DJIAircraftAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760D0837203CD6BE00E2993E /* DJIAircraftAnnotation.swift */; };
+		760D083A203DCE5E00E2993E /* DemoUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760D0839203DCE5E00E2993E /* DemoUtility.swift */; };
+		760D083C203DF72700E2993E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 760D083B203DF72600E2993E /* GoogleService-Info.plist */; };
+		760D083F203DF93400E2993E /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760D083E203DF93400E2993E /* FBManager.swift */; };
+		760D0842203E05B900E2993E /* MissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760D0841203E05B900E2993E /* MissionsViewController.swift */; };
 		768DBE1520374C23009B011A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DBE1420374C23009B011A /* AppDelegate.swift */; };
 		768DBE1720374C23009B011A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DBE1620374C23009B011A /* ViewController.swift */; };
 		768DBE1A20374C23009B011A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768DBE1820374C23009B011A /* Main.storyboard */; };
@@ -54,6 +61,13 @@
 /* Begin PBXFileReference section */
 		0D12EF1A853365E794425E37 /* Pods-DJIDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJIDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DJIDemo/Pods-DJIDemo.release.xcconfig"; sourceTree = "<group>"; };
 		15C4D2AD412D15FE856FD42D /* Pods-DJIDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJIDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DJIDemo/Pods-DJIDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		760D0833203CD41600E2993E /* DJIAircraftAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIAircraftAnnotationView.swift; sourceTree = "<group>"; };
+		760D0835203CD61E00E2993E /* drone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drone.png; sourceTree = "<group>"; };
+		760D0837203CD6BE00E2993E /* DJIAircraftAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIAircraftAnnotation.swift; sourceTree = "<group>"; };
+		760D0839203DCE5E00E2993E /* DemoUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoUtility.swift; sourceTree = "<group>"; };
+		760D083B203DF72600E2993E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		760D083E203DF93400E2993E /* FBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
+		760D0841203E05B900E2993E /* MissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionsViewController.swift; sourceTree = "<group>"; };
 		768DBE1120374C23009B011A /* DJIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768DBE1420374C23009B011A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		768DBE1620374C23009B011A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,12 +121,19 @@
 				768DBE1420374C23009B011A /* AppDelegate.swift */,
 				768DBE1620374C23009B011A /* ViewController.swift */,
 				76CDFF502037DA5D0060CDEE /* WaypointViewController.swift */,
+				760D0841203E05B900E2993E /* MissionsViewController.swift */,
+				760D0839203DCE5E00E2993E /* DemoUtility.swift */,
+				760D0837203CD6BE00E2993E /* DJIAircraftAnnotation.swift */,
+				760D083E203DF93400E2993E /* FBManager.swift */,
+				760D0833203CD41600E2993E /* DJIAircraftAnnotationView.swift */,
 				76CDFF53203B6AE60060CDEE /* DJIMapController.swift */,
 				768DBE1820374C23009B011A /* Main.storyboard */,
+				760D0835203CD61E00E2993E /* drone.png */,
 				768DBE1B20374C23009B011A /* Assets.xcassets */,
 				768DBE1D20374C23009B011A /* LaunchScreen.storyboard */,
 				768DBE2020374C23009B011A /* Info.plist */,
 				76CDFF45203775A40060CDEE /* DJIDemo-Bridging-Header.h */,
+				760D083B203DF72600E2993E /* GoogleService-Info.plist */,
 			);
 			path = DJIDemo;
 			sourceTree = "<group>";
@@ -230,6 +251,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				760D083C203DF72700E2993E /* GoogleService-Info.plist in Resources */,
+				760D0836203CD61E00E2993E /* drone.png in Resources */,
 				768DBE1F20374C23009B011A /* LaunchScreen.storyboard in Resources */,
 				768DBE1C20374C23009B011A /* Assets.xcassets in Resources */,
 				768DBE1A20374C23009B011A /* Main.storyboard in Resources */,
@@ -262,10 +285,20 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DJIDemo/Pods-DJIDemo-frameworks.sh",
 				"${PODS_ROOT}/DJI-SDK-iOS/iOS_Mobile_SDK/DJISDK.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DJISDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -299,7 +332,12 @@
 			files = (
 				768DBE1720374C23009B011A /* ViewController.swift in Sources */,
 				768DBE1520374C23009B011A /* AppDelegate.swift in Sources */,
+				760D083A203DCE5E00E2993E /* DemoUtility.swift in Sources */,
+				760D0842203E05B900E2993E /* MissionsViewController.swift in Sources */,
+				760D0838203CD6BE00E2993E /* DJIAircraftAnnotation.swift in Sources */,
 				76CDFF54203B6AE60060CDEE /* DJIMapController.swift in Sources */,
+				760D083F203DF93400E2993E /* FBManager.swift in Sources */,
+				760D0834203CD41600E2993E /* DJIAircraftAnnotationView.swift in Sources */,
 				76CDFF512037DA5D0060CDEE /* WaypointViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
