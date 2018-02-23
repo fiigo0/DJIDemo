@@ -22,9 +22,11 @@ class DJIAircraftAnnotationView: MKAnnotationView {
         self.transform = CGAffineTransform.identity
         self.transform = CGAffineTransform(rotationAngle: CGFloat(heading))
         
-    }
+    }        
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
 }

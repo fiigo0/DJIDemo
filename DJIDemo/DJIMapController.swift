@@ -54,10 +54,16 @@ class DJIMapController: NSObject, MKMapViewDelegate {
      */
     
     func updateAircraftLocation(location:CLLocationCoordinate2D, withMapView mapView:MKMapView) {
+        addLog(method: "updateAircraftLocation", message: "Start")
+        addLog(method: "updateAircraftLocation_location", message: "\(location.latitude)- \(location.longitude)")
         if self.aircraftAnnotation == nil {
-            self.aircraftAnnotation = DJIAircraftAnnotation.init(coordinate: location)
+            addLog(method: "updateAircraftLocation", message: "updateAircraftLocation_NIL")
+            self.aircraftAnnotation = DJIAircraftAnnotation(coordinate: location)
             mapView.addAnnotation(self.aircraftAnnotation!)
+        }else {
+            addLog(method: "updateAircraftLocation", message: "updateAircraftLocation_Not_NIL")
         }
+        
         self.aircraftAnnotation?.setCoordinate(coordinate: location)
     }
     
@@ -71,6 +77,9 @@ class DJIMapController: NSObject, MKMapViewDelegate {
         }
     }
     
+    func addLog(method:String,message:String) {
+        FBManager.sharedInstance.log(method: method, withMessage: message)
+    }
     
     
     

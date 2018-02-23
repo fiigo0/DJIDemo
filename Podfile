@@ -10,5 +10,7 @@ target 'DJIDemo' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Crash'
+  pod 'Fabric'
+  pod 'Crashlytics'
   pod 'Firebase/Database'
 end

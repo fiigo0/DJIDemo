@@ -10,15 +10,20 @@ import UIKit
 import MapKit
 
 class DJIAircraftAnnotation: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
+    
+    dynamic var coordinate: CLLocationCoordinate2D
     var annotationView:DJIAircraftAnnotationView?
     
     init(coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
+        super.init()
     }
     
     func setCoordinate(coordinate:CLLocationCoordinate2D){
-        self.coordinate = coordinate
+        addLog(method: "DJIAirCraftAnnotarion_setCoordinate", message: "\(coordinate.latitude) : \(coordinate.longitude)")
+        if self.annotationView != nil {
+            self.coordinate = coordinate
+        }
     }
     
     func updateHeading(heading:Float){
@@ -27,7 +32,9 @@ class DJIAircraftAnnotation: NSObject, MKAnnotation {
         }
     }
     
-
+    func addLog(method:String,message:String) {
+        FBManager.sharedInstance.log(method: method, withMessage: message)
+    }
     
     
 }
