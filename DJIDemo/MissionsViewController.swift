@@ -15,6 +15,13 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet var statusView: UIView!
+    @IBOutlet weak var gpsLbl: UILabel!
+    @IBOutlet weak var modeLbl: UILabel!
+    @IBOutlet weak var hsLbl: UILabel!
+    @IBOutlet weak var vsLbl: UILabel!
+    @IBOutlet weak var altLbl: UILabel!
+    @IBOutlet weak var statusButton: UIButton!
     
     //Objects
     var mapController:DJIMapController = DJIMapController()
@@ -35,6 +42,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.initUI()
         self.registerApp()
         self.updateUI()
         self.initData()
@@ -53,6 +61,22 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     
     func registerApp(){
         DJISDKManager.registerApp(with: self)
+    }
+    
+    
+    func showStatusView(){
+        
+    }
+    
+    func initUI() {
+        self.modeLbl.text = "N/A"
+        self.gpsLbl.text = "0"
+        self.vsLbl.text = "0.0 M/S"
+        self.hsLbl.text = "0.0 M/S"
+        self.altLbl.text = "0 M"
+        statusView.frame = CGRect(x: 0, y: Double(self.view.frame.height - 40), width: Double(self.view.frame.width), height: 40.0)
+        self.view.addSubview(statusView)
+        self.statusView.isHidden = true
     }
     
     func initData(){
@@ -156,18 +180,19 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     
     func flightController(_ fc: DJIFlightController, didUpdate state: DJIFlightControllerState) {
         self.addLog(method: "flightController", message: "FC_didupdateState")
-        
         self.droneLocation = state.aircraftLocation?.coordinate
-        
         let location = self.droneLocation ?? CLLocationCoordinate2DMake(0, 0)
-        
         self.addLog(method: "flightController_droneLocation", message: "\(location.latitude) - \(location.longitude)")
-        
         self.mapController.updateAircraftLocation(location: location, withMapView: self.mapView)
-        
         let radianYaw = Float(self.getRadian(x: state.attitude.yaw))
-        
         self.addLog(method: "flightController_droneLocation_yaw", message: "\(radianYaw)")
+
+        self.modeLbl.text = "\(state.flightMode)"
+        self.gpsLbl.text = "\(state.satelliteCount)"
+        self.vsLbl.text = NSString(format: "%0.1f M/S", state.velocityZ) as String
+        self.hsLbl.text = NSString(format: "%0.1f M/S", sqrtf((state.velocityX * state.velocityX) + (state.velocityY * state.velocityY))) as String
+        self.altLbl.text = NSString(format: "%0.1f M", state.altitude) as String
+        
         self.mapController.updateAircraftHeading(heading: radianYaw)
     }
     func getDegree(x:Double) -> Double{
@@ -229,6 +254,15 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         }
         
         self.isEditingPoints = !self.isEditingPoints;
+    }
+    @IBAction func showStatusButtonPressed(_ sender: UIButton) {
+        
+        self.statusView.isHidden = !self.statusView.isHidden
+        if self.statusView.isHidden {
+            self.statusButton.backgroundColor = UIColor.gray
+        }else {
+            self.statusButton.backgroundColor = UIColor.blue
+        }
     }
     
     // MARK: Auxiliar Methods

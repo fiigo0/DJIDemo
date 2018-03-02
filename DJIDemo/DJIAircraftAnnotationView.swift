@@ -15,7 +15,7 @@ class DJIAircraftAnnotationView: MKAnnotationView {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.isEnabled = false
         self.isDraggable = false
-        self.image = UIImage.init(named: "drone.png")
+        self.image = UIImage.init(named: "plane24.png")
     }
     
     func updateHeading(heading:Float){
