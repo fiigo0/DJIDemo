@@ -106,39 +106,6 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="13c-LT-2cC">
                                 <rect key="frame" x="0.0" y="0.0" width="812" height="381"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JY9-ju-WRR">
-                                <rect key="frame" x="527" y="20" width="100" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.098039215690000001" green="0.58039215690000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Edit">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="editButtonPressed:" destination="J88-T3-ELV" eventType="touchUpInside" id="Tal-JY-dlp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z25-rn-tf2">
-                                <rect key="frame" x="648" y="20" width="100" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.098039215690000001" green="0.58039215690000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Focus">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="focusButtonPressed:" destination="J88-T3-ELV" eventType="touchUpInside" id="6eT-oW-ISy"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oN-ac-Nms">
-                                <rect key="frame" x="419" y="20" width="100" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.098039215690000001" green="0.58039215690000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Show Status">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="showStatusButtonPressed:" destination="J88-T3-ELV" eventType="touchUpInside" id="ctk-4q-KBt"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -150,15 +117,25 @@
                         <viewLayoutGuide key="safeArea" id="1qj-3r-fsS"/>
                     </view>
                     <connections>
+                        <outlet property="addMenuButton" destination="6A4-fC-uaG" id="F6i-PY-M6C"/>
                         <outlet property="altLbl" destination="axF-Cw-OdU" id="Gzq-11-hMD"/>
+                        <outlet property="backMenuButton" destination="U6m-uT-b2r" id="e0p-RX-tub"/>
+                        <outlet property="clearMenuButton" destination="gJx-ud-iFi" id="iUv-lk-ERa"/>
+                        <outlet property="configMenuButton" destination="wdy-Aj-goO" id="r9d-Tv-cC9"/>
                         <outlet property="editBtn" destination="JY9-ju-WRR" id="QJF-5t-1jj"/>
+                        <outlet property="focusButton" destination="z25-rn-tf2" id="sVg-Yo-MsW"/>
                         <outlet property="gpsLbl" destination="3z0-hN-pBP" id="5U6-NN-RtV"/>
                         <outlet property="hsLbl" destination="8gZ-ec-BmM" id="Wob-F0-zLB"/>
+                        <outlet property="mainMenuView" destination="k7b-Ni-TW9" id="WLc-rS-D98"/>
                         <outlet property="mapView" destination="13c-LT-2cC" id="Z8f-44-KXN"/>
                         <outlet property="modeLbl" destination="n23-7W-tdQ" id="HiR-rw-Q7c"/>
+                        <outlet property="startMenuButton" destination="6IJ-BZ-u6v" id="ssu-Xk-Nj6"/>
                         <outlet property="statusButton" destination="1oN-ac-Nms" id="caT-Cg-T5G"/>
                         <outlet property="statusView" destination="TCq-tw-b85" id="T3H-Qp-deS"/>
+                        <outlet property="stopMenuButton" destination="ScL-MK-eh9" id="41m-hm-7Ha"/>
                         <outlet property="vsLbl" destination="tpb-Uf-ym7" id="Bo9-cv-tfa"/>
+                        <outlet property="waypoingConfigView" destination="mbB-4O-ELt" id="aQQ-3x-8jI"/>
+                        <outlet property="waypointsMenuView" destination="I9A-3m-KxB" id="Sm6-dM-FEt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KZo-aT-AsF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -261,8 +238,241 @@
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <viewLayoutGuide key="safeArea" id="jzW-ER-MTA"/>
                 </view>
+                <view contentMode="scaleToFill" id="k7b-Ni-TW9">
+                    <rect key="frame" x="0.0" y="0.0" width="100" height="122"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z25-rn-tf2">
+                            <rect key="frame" x="0.0" y="8" width="100" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.098039215690000001" green="0.58039215690000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Focus">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </state>
+                            <connections>
+                                <action selector="focusButtonPressed:" destination="J88-T3-ELV" eventType="touchUpInside" id="6eT-oW-ISy"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JY9-ju-WRR">
+                            <rect key="frame" x="0.0" y="84" width="100" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.098039215690000001" green="0.58039215690000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Edit">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </state>
+                            <connections>
+                                <action selector="editButtonPressed:" destination="J88-T3-ELV" eventType="touchUpInside" id="Tal-JY-dlp"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oN-ac-Nms">
+                            <rect key="frame" x="0.0" y="46" width="100" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.098039215690000001" green="0.58039215690000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Show Status">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </state>
+                            <connections>
+                                <action selector="showStatusButtonPressed:" destination="J88-T3-ELV" eventType="touchUpInside" id="ctk-4q-KBt"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="TKZ-sD-8Ci"/>
+                </view>
+                <view contentMode="scaleToFill" id="I9A-3m-KxB">
+                    <rect key="frame" x="0.0" y="0.0" width="100" height="221"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="adv-mL-ySp">
+                            <rect key="frame" x="0.0" y="10" width="56" height="201"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6m-uT-b2r">
+                                    <rect key="frame" x="0.0" y="0.0" width="56" height="27"/>
+                                    <color key="backgroundColor" red="0.098039215690000001" green="0.58039215690000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Back">
+                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="backButtonPressed:" destination="J88-T3-ELV" eventType="touchUpInside" id="VU6-pi-K4z"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6A4-fC-uaG">
+                                    <rect key="frame" x="0.0" y="35" width="56" height="26.666666666666671"/>
+                                    <color key="backgroundColor" red="0.098039215690000001" green="0.58039215690000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Add">
+                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="addWaypointButtonPressed:" destination="J88-T3-ELV" eventType="touchUpInside" id="l0x-ba-TU3"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJx-ud-iFi">
+                                    <rect key="frame" x="0.0" y="69.666666666666671" width="56" height="27"/>
+                                    <color key="backgroundColor" red="0.098039215690000001" green="0.58039215690000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Clear">
+                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clearWaypointsButtonPressed:" destination="J88-T3-ELV" eventType="touchUpInside" id="Tyj-hI-xJJ"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdy-Aj-goO">
+                                    <rect key="frame" x="0.0" y="104.66666666666667" width="56" height="26.666666666666671"/>
+                                    <color key="backgroundColor" red="0.098039215690000001" green="0.58039215690000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Config">
+                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="configMissionButtonPressed:" destination="J88-T3-ELV" eventType="touchUpInside" id="0JY-yD-PYw"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6IJ-BZ-u6v">
+                                    <rect key="frame" x="0.0" y="139.33333333333334" width="56" height="27"/>
+                                    <color key="backgroundColor" red="0.098039215690000001" green="0.58039215690000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Start">
+                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="startMissionButtonPressed:" destination="J88-T3-ELV" eventType="touchUpInside" id="BOk-0x-82S"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScL-MK-eh9">
+                                    <rect key="frame" x="0.0" y="174.33333333333334" width="56" height="26.666666666666657"/>
+                                    <color key="backgroundColor" red="0.098039215690000001" green="0.58039215690000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Stop">
+                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="stopMissionButtonPressed:" destination="J88-T3-ELV" eventType="touchUpInside" id="6Wy-6T-2k9"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="fpr-N9-afw" firstAttribute="trailing" secondItem="adv-mL-ySp" secondAttribute="trailing" id="1Sd-mG-fUi"/>
+                        <constraint firstAttribute="bottom" secondItem="adv-mL-ySp" secondAttribute="bottom" constant="10" id="23a-uz-XuL"/>
+                        <constraint firstItem="adv-mL-ySp" firstAttribute="top" secondItem="I9A-3m-KxB" secondAttribute="top" constant="10" id="McU-dK-FuV"/>
+                        <constraint firstItem="adv-mL-ySp" firstAttribute="leading" secondItem="I9A-3m-KxB" secondAttribute="leading" id="Vr7-oH-mNQ"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="fpr-N9-afw"/>
+                </view>
+                <view contentMode="scaleToFill" id="mbB-4O-ELt" customClass="DJIWaypointConfigView" customModule="DJIDemo" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="553" height="320"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Waypoint Configuration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsk-IR-D0t">
+                            <rect key="frame" x="87" y="20" width="380" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Altitude: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7h-is-5cJ">
+                            <rect key="frame" x="14" y="60" width="60" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="N/A" borderStyle="roundedRect" placeholder="N/A" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Egt-go-QDd">
+                            <rect key="frame" x="82" y="55" width="70" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Max flight Speed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyf-u3-uh2">
+                            <rect key="frame" x="362" y="60" width="99" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Action After Finished:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnX-tf-KGe">
+                            <rect key="frame" x="216" y="103" width="122" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="N/A" borderStyle="roundedRect" placeholder="N/A" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yrD-ND-eJz">
+                            <rect key="frame" x="469" y="55" width="70" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Auto Flight Speed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5D-5P-RTX">
+                            <rect key="frame" x="160" y="59" width="116" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="N/A" borderStyle="roundedRect" placeholder="N/A" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WaX-bD-xum">
+                            <rect key="frame" x="284" y="54" width="70" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hAV-SV-9zd">
+                            <rect key="frame" x="80" y="132" width="395" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="None"/>
+                                <segment title="GoHome"/>
+                                <segment title="AutoLand"/>
+                                <segment title="BackTo 1st"/>
+                                <segment title="UntilStop"/>
+                            </segments>
+                        </segmentedControl>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Action After Finished:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYN-4R-Xse">
+                            <rect key="frame" x="216" y="176" width="122" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VuI-Jo-hyg">
+                            <rect key="frame" x="14" y="261" width="250" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Cancel"/>
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="mbB-4O-ELt" eventType="touchUpInside" id="PnN-ld-Ygg"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGG-N4-b9o">
+                            <rect key="frame" x="289" y="261" width="250" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Finish"/>
+                            <connections>
+                                <action selector="finishButtonPressed:" destination="mbB-4O-ELt" eventType="touchUpInside" id="RPE-D0-63J"/>
+                            </connections>
+                        </button>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="25P-aL-eWI">
+                            <rect key="frame" x="80" y="214" width="395" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Auto"/>
+                                <segment title="Initial"/>
+                                <segment title="RC Control"/>
+                                <segment title="Use Waypoint"/>
+                            </segments>
+                        </segmentedControl>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="3St-Na-bJn"/>
+                    <connections>
+                        <outlet property="actionSegmentedControl" destination="hAV-SV-9zd" id="Xd0-HO-fIK"/>
+                        <outlet property="altitudeTextField" destination="Egt-go-QDd" id="9PT-W6-hQn"/>
+                        <outlet property="autoFlightSpeedTextField" destination="WaX-bD-xum" id="lPH-bE-WDj"/>
+                        <outlet property="headingSegmentControl" destination="25P-aL-eWI" id="GhQ-Tm-k9D"/>
+                        <outlet property="maxFlightSpeedTextField" destination="yrD-ND-eJz" id="H70-mV-941"/>
+                    </connections>
+                </view>
             </objects>
-            <point key="canvasLocation" x="330" y="1230"/>
+            <point key="canvasLocation" x="334" y="1481"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0j3-1b-55t">

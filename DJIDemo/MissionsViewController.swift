@@ -11,17 +11,44 @@ import DJISDK
 import Fabric
 import Crashlytics
 
-class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppActivationManagerDelegate, MKMapViewDelegate,CLLocationManagerDelegate,DJIFlightControllerDelegate {
-
+class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppActivationManagerDelegate, MKMapViewDelegate,CLLocationManagerDelegate,DJIFlightControllerDelegate, DJIWaypointConfigViewDelegate {
+    
+    
+    enum DJIGSViewMode {
+        case DJIGSViewMode_ViewMode
+        case DJIGSViewMode_EditMode
+    }
+    
+    
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var editBtn: UIButton!
+    
+    //Status bar
     @IBOutlet var statusView: UIView!
     @IBOutlet weak var gpsLbl: UILabel!
     @IBOutlet weak var modeLbl: UILabel!
     @IBOutlet weak var hsLbl: UILabel!
     @IBOutlet weak var vsLbl: UILabel!
     @IBOutlet weak var altLbl: UILabel!
+    
+    //Main Menu
+    @IBOutlet var mainMenuView: UIView!
+    @IBOutlet weak var focusButton: UIButton!
     @IBOutlet weak var statusButton: UIButton!
+    @IBOutlet weak var editBtn: UIButton!
+    
+    //Waypoint Button Menu
+    @IBOutlet var waypointsMenuView: UIView!
+    @IBOutlet weak var backMenuButton: UIButton!
+    @IBOutlet weak var addMenuButton: UIButton!
+    @IBOutlet weak var clearMenuButton: UIButton!
+    @IBOutlet weak var stopMenuButton: UIButton!
+    @IBOutlet weak var startMenuButton: UIButton!
+    @IBOutlet weak var configMenuButton: UIButton!
+    
+    //Mission Config View Menu
+    @IBOutlet var waypoingConfigView: DJIWaypointConfigView!
+    
+    var waypointsMission:DJIMutableWaypointMission?
     
     //Objects
     var mapController:DJIMapController = DJIMapController()
@@ -39,7 +66,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     override var prefersStatusBarHidden: Bool {
         return false
     }
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initUI()
@@ -64,19 +91,36 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     }
     
     
-    func showStatusView(){
-        
-    }
-    
     func initUI() {
         self.modeLbl.text = "N/A"
         self.gpsLbl.text = "0"
         self.vsLbl.text = "0.0 M/S"
         self.hsLbl.text = "0.0 M/S"
         self.altLbl.text = "0 M"
+        
+        //Status bar
         statusView.frame = CGRect(x: 0, y: Double(self.view.frame.height - 40), width: Double(self.view.frame.width), height: 40.0)
         self.view.addSubview(statusView)
         self.statusView.isHidden = true
+        
+        //Main Menu
+        mainMenuView.frame = CGRect(x: Double(self.view.frame.width - 150), y: 10, width: 100, height: Double(self.view.frame.height))
+        self.view.addSubview(mainMenuView)
+        
+        //Missions Menu
+        waypointsMenuView.frame = CGRect(x: Double(self.view.frame.width - 150), y: 0, width: 100, height: Double(self.view.frame.height))
+        self.view.addSubview(waypointsMenuView)
+        self.waypointsMenuView.isHidden = true
+        
+        //waypoint VC
+        waypoingConfigView.frame = CGRect(x: 130, y: 0, width: 553, height: 320)
+        waypoingConfigView.center = self.view.center
+        waypoingConfigView.delegate = self
+        waypoingConfigView.initUI()
+        self.view.addSubview(waypoingConfigView)
+        self.waypoingConfigView.isHidden = true
+        
+        
     }
     
     func initData(){
@@ -156,7 +200,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         if CLLocationManager.locationServicesEnabled(){
             self.addLog(method: "startUpdateLocation", message: "update_location_enabled")
             if self.locationManager == nil {
-               self.addLog(method: "startUpdateLocation_locationManager", message: "locationManager_initialized")
+                self.addLog(method: "startUpdateLocation_locationManager", message: "locationManager_initialized")
                 self.locationManager = CLLocationManager()
                 self.locationManager?.delegate = self
                 self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
@@ -167,7 +211,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
                 self.addLog(method: "startUpdateLocation_locationManager", message:  "locationManager_initialized_failed")
             }
         }else {
-               self.addLog(method: "startUpdateLocation", message:  "update_location_disabled")
+            self.addLog(method: "startUpdateLocation", message:  "update_location_disabled")
         }
     }
     
@@ -186,7 +230,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         self.mapController.updateAircraftLocation(location: location, withMapView: self.mapView)
         let radianYaw = Float(self.getRadian(x: state.attitude.yaw))
         self.addLog(method: "flightController_droneLocation_yaw", message: "\(radianYaw)")
-
+        
         self.modeLbl.text = "\(state.flightMode)"
         self.gpsLbl.text = "\(state.satelliteCount)"
         self.vsLbl.text = NSString(format: "%0.1f M/S", state.velocityZ) as String
@@ -208,16 +252,11 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.isKind(of: MKPointAnnotation.self) {
-            self.addLog(method: "mapView_viewForAnnotation", message: "MKPointAnnotation")
             let pinView = MKPinAnnotationView.init(annotation: annotation, reuseIdentifier: "PinAnnotation")
-            
-            self.addLog(method: "mapView_viewForAnnotation_title", message: "waypoint")
             pinView.pinTintColor = UIColor.purple
-            
             return pinView
-
-        } else if annotation.isKind(of: DJIAircraftAnnotation.self){
-            self.addLog(method: "mapView_viewForAnnotation", message: "DJIAircraftAnnotation")
+            
+        } else if annotation.isKind(of: DJIAircraftAnnotation.self){            
             let annoView = DJIAircraftAnnotationView.init(annotation: annotation, reuseIdentifier: "Aircraft_Annotation")
             (annotation as! DJIAircraftAnnotation).annotationView = annoView
             return annoView
@@ -231,6 +270,10 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     // MARK: Action Methods
     
     @IBAction func focusButtonPressed(_ sender: UIButton) {
+        self.focusMap()
+    }
+    
+    func focusMap(){
         if self.droneLocation == nil {
             self.addLog(method: "focusButtonPressed", message: "Drone_Location_NIL")
         }else if CLLocationCoordinate2DIsValid(self.droneLocation!) {
@@ -239,22 +282,15 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
             let region = MKCoordinateRegion(center: self.droneLocation!, span: span)
             self.mapView.setRegion(region, animated: true)
         }else {
-           self.addLog(method: "focusButtonPressed", message: "Drone_Location_Empty")
+            self.addLog(method: "focusButtonPressed", message: "Drone_Location_Empty")
         }
     }
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
-        if (self.isEditingPoints) {
-            self.mapController.cleanAllPointsWithMapView(mapView: self.mapView)
-            self.editBtn .setTitle("Edit", for: UIControlState.normal)
-            
-        }else
-        {
-            self.editBtn.setTitle("Reset", for: UIControlState.normal)
-        }
-        
-        self.isEditingPoints = !self.isEditingPoints;
+        self.mainMenuView.isHidden = true
+        self.waypointsMenuView.isHidden = false
     }
+    
     @IBAction func showStatusButtonPressed(_ sender: UIButton) {
         
         self.statusView.isHidden = !self.statusView.isHidden
@@ -264,6 +300,146 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
             self.statusButton.backgroundColor = UIColor.blue
         }
     }
+    
+    // MARK: Waypoint Menu Actions
+    
+    func missionOperator() -> (DJIWaypointMissionOperator?){
+        return DJISDKManager.missionControl()?.waypointMissionOperator()
+    }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        self.mainMenuView.isHidden = false
+        self.waypointsMenuView.isHidden = true
+    }
+    
+    @IBAction func addWaypointButtonPressed(_ sender: UIButton) {
+        if self.isEditingPoints {
+            self.isEditingPoints = false
+            self.addMenuButton.setTitle("Add", for: .normal)
+        } else {
+            self.isEditingPoints = true
+            self.addMenuButton.setTitle("Finished", for: .normal)
+        }
+    }
+    @IBAction func clearWaypointsButtonPressed(_ sender: UIButton) {
+        self.mapController.cleanAllPointsWithMapView(mapView: self.mapView)
+    }
+    
+    @IBAction func configMissionButtonPressed(_ sender: UIButton) {
+        print("Config")
+        self.waypoingConfigView.isHidden = false
+        
+        
+        let wayPoints = self.mapController.wayPoints
+        // TODO: veryfy nil waypoints
+        
+        if wayPoints.count < 2 {
+            print("No or not enought waypoints for missions")
+            return
+        }
+        
+        if (self.waypointsMission != nil) {
+            self.waypointsMission?.removeAllWaypoints()
+        } else {
+            self.waypointsMission = DJIMutableWaypointMission()
+        }
+        
+        for waypoint in wayPoints {
+            if CLLocationCoordinate2DIsValid(waypoint.coordinate){
+                let waypoint = DJIWaypoint(coordinate: waypoint.coordinate)
+                self.waypointsMission?.add(waypoint)
+            }
+        }
+        
+        
+    }
+    
+    @IBAction func startMissionButtonPressed(_ sender: UIButton) {
+        
+        
+        self.addLog(method: "startMissionButtonPressed_state", message: "\(String(describing: self.missionOperator()?.currentState))")
+        
+        self.missionOperator()?.startMission(completion: { (error) in
+            if error != nil {
+                self.addLog(method: "startMissionButtonPressed", message: "Start mission failed \(error.debugDescription)")
+            } else {
+                self.addLog(method: "startMissionButtonPressed", message: "Mission Started")
+            }
+        })
+    }
+    
+    @IBAction func stopMissionButtonPressed(_ sender: UIButton) {
+        self.missionOperator()?.stopMission(completion: { (error) in
+            if error != nil {
+                self.addLog(method: "stopMissionButtonPressed", message: "Stop mission failed \(error.debugDescription)")
+            } else {
+                self.addLog(method: "stopMissionButtonPressed", message: "Mission Stoped")
+            }
+        })
+        
+        
+    }
+    
+    func switchMode(mode:DJIGSViewMode){
+        if mode == DJIGSViewMode.DJIGSViewMode_EditMode{
+            self.focusMap()
+        }
+    }
+    
+    // MARK: DJIWaypointConfigViewDelegate
+    
+    func cancelBtnActionInDJIWaypointConfigViewController(waypointConfigVC: DJIWaypointConfigView) {
+        UIView.animate(withDuration: 0.25) {
+            self.waypoingConfigView.isHidden = true
+        }
+    }
+    
+    func finishBtnActionInDJIWaypointConfigViewController(waypointConfigVC: DJIWaypointConfigView) {
+        UIView.animate(withDuration: 0.25) {
+            self.waypoingConfigView.isHidden = true
+        }
+        
+        
+        for index in 0...((self.waypointsMission?.waypointCount)! - 1)  {
+            let waypoint = self.waypointsMission?.waypoint(at: index)
+            let altitude : Float = NSString(string: (self.waypoingConfigView.altitudeTextField?.text)!).floatValue
+            waypoint?.altitude = altitude
+        }
+        
+        self.waypointsMission?.maxFlightSpeed = NSString(string: (self.waypoingConfigView.maxFlightSpeedTextField?.text)!).floatValue
+        self.waypointsMission?.autoFlightSpeed = NSString(string: (self.waypoingConfigView.autoFlightSpeedTextField?.text)!).floatValue
+        
+        let selectedMode: Int = (self.waypoingConfigView.headingSegmentControl?.selectedSegmentIndex)!
+        let modeNumber = UInt(selectedMode)
+        let mode : DJIWaypointMissionHeadingMode = DJIWaypointMissionHeadingMode(rawValue: modeNumber)!
+        self.waypointsMission?.headingMode = mode
+        
+        
+        let selectedActionMode: Int = (self.waypoingConfigView.actionSegmentedControl?.selectedSegmentIndex)!
+        let actionModeNumber = UInt8(selectedActionMode)
+        let actionMode : DJIWaypointMissionFinishedAction = DJIWaypointMissionFinishedAction(rawValue:actionModeNumber)!
+        self.waypointsMission?.finishedAction = actionMode
+        
+        self.missionOperator()?.load(self.waypointsMission!)
+        
+        self.missionOperator()?.addListener(toFinished: self, with: DispatchQueue.main, andBlock: { (error:Error?) in
+            if error != nil {
+                self.addLog(method: "finishBtnActionInDJIWaypointConfigViewController", message: "Mission Execution Failed : \(error.debugDescription)")
+            }else {
+                self.addLog(method: "finishBtnActionInDJIWaypointConfigViewController", message: "Mission Execution Finished")
+            }
+        })
+        
+        self.missionOperator()?.uploadMission(completion: { (error) in
+            if error != nil {
+                self.addLog(method: "finishBtnActionInDJIWaypointConfigViewController_uploadMission", message: "Upload Mission failed : \(error.debugDescription)")
+            } else {
+                self.addLog(method: "finishBtnActionInDJIWaypointConfigViewController_uploadMission", message: "Upload Mission Finished")
+            }
+        })
+        
+    }
+    
     
     // MARK: Auxiliar Methods
     

@@ -10,11 +10,12 @@
 		760D0834203CD41600E2993E /* DJIAircraftAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760D0833203CD41600E2993E /* DJIAircraftAnnotationView.swift */; };
 		760D0836203CD61E00E2993E /* drone.png in Resources */ = {isa = PBXBuildFile; fileRef = 760D0835203CD61E00E2993E /* drone.png */; };
 		760D0838203CD6BE00E2993E /* DJIAircraftAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760D0837203CD6BE00E2993E /* DJIAircraftAnnotation.swift */; };
-		760D083C203DF72700E2993E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 760D083B203DF72600E2993E /* GoogleService-Info.plist */; };
 		760D083F203DF93400E2993E /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760D083E203DF93400E2993E /* FBManager.swift */; };
 		760D0842203E05B900E2993E /* MissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760D0841203E05B900E2993E /* MissionsViewController.swift */; };
 		760D0849203FD18700E2993E /* drone-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 760D0848203FD18700E2993E /* drone-2.png */; };
 		760D084B203FD19400E2993E /* plane24.png in Resources */ = {isa = PBXBuildFile; fileRef = 760D084A203FD19400E2993E /* plane24.png */; };
+		766F456C204A3109007BD907 /* DJIWaypointConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F456B204A3109007BD907 /* DJIWaypointConfigView.swift */; };
+		766F4572204B7A2A007BD907 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 766F4571204B7A2A007BD907 /* GoogleService-Info.plist */; };
 		768DBE1520374C23009B011A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DBE1420374C23009B011A /* AppDelegate.swift */; };
 		768DBE1720374C23009B011A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DBE1620374C23009B011A /* ViewController.swift */; };
 		768DBE1A20374C23009B011A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768DBE1820374C23009B011A /* Main.storyboard */; };
@@ -64,11 +65,12 @@
 		760D0833203CD41600E2993E /* DJIAircraftAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIAircraftAnnotationView.swift; sourceTree = "<group>"; };
 		760D0835203CD61E00E2993E /* drone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drone.png; sourceTree = "<group>"; };
 		760D0837203CD6BE00E2993E /* DJIAircraftAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIAircraftAnnotation.swift; sourceTree = "<group>"; };
-		760D083B203DF72600E2993E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		760D083E203DF93400E2993E /* FBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
 		760D0841203E05B900E2993E /* MissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionsViewController.swift; sourceTree = "<group>"; };
 		760D0848203FD18700E2993E /* drone-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drone-2.png"; sourceTree = "<group>"; };
 		760D084A203FD19400E2993E /* plane24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane24.png; sourceTree = "<group>"; };
+		766F456B204A3109007BD907 /* DJIWaypointConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIWaypointConfigView.swift; sourceTree = "<group>"; };
+		766F4571204B7A2A007BD907 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		768DBE1120374C23009B011A /* DJIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768DBE1420374C23009B011A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		768DBE1620374C23009B011A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		766F456E204B2D5C007BD907 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				760D0837203CD6BE00E2993E /* DJIAircraftAnnotation.swift */,
+				760D0833203CD41600E2993E /* DJIAircraftAnnotationView.swift */,
+				76CDFF53203B6AE60060CDEE /* DJIMapController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		768DBE0820374C23009B011A = {
 			isa = PBXGroup;
 			children = (
@@ -121,10 +133,9 @@
 				768DBE1420374C23009B011A /* AppDelegate.swift */,
 				768DBE1620374C23009B011A /* ViewController.swift */,
 				760D0841203E05B900E2993E /* MissionsViewController.swift */,
-				760D0837203CD6BE00E2993E /* DJIAircraftAnnotation.swift */,
+				766F456B204A3109007BD907 /* DJIWaypointConfigView.swift */,
+				766F456E204B2D5C007BD907 /* Map */,
 				760D083E203DF93400E2993E /* FBManager.swift */,
-				760D0833203CD41600E2993E /* DJIAircraftAnnotationView.swift */,
-				76CDFF53203B6AE60060CDEE /* DJIMapController.swift */,
 				768DBE1820374C23009B011A /* Main.storyboard */,
 				760D084A203FD19400E2993E /* plane24.png */,
 				760D0848203FD18700E2993E /* drone-2.png */,
@@ -132,8 +143,8 @@
 				768DBE1B20374C23009B011A /* Assets.xcassets */,
 				768DBE1D20374C23009B011A /* LaunchScreen.storyboard */,
 				768DBE2020374C23009B011A /* Info.plist */,
+				766F4571204B7A2A007BD907 /* GoogleService-Info.plist */,
 				76CDFF45203775A40060CDEE /* DJIDemo-Bridging-Header.h */,
-				760D083B203DF72600E2993E /* GoogleService-Info.plist */,
 			);
 			path = DJIDemo;
 			sourceTree = "<group>";
@@ -252,13 +263,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				760D083C203DF72700E2993E /* GoogleService-Info.plist in Resources */,
 				760D0836203CD61E00E2993E /* drone.png in Resources */,
 				768DBE1F20374C23009B011A /* LaunchScreen.storyboard in Resources */,
 				760D0849203FD18700E2993E /* drone-2.png in Resources */,
 				760D084B203FD19400E2993E /* plane24.png in Resources */,
 				768DBE1C20374C23009B011A /* Assets.xcassets in Resources */,
 				768DBE1A20374C23009B011A /* Main.storyboard in Resources */,
+				766F4572204B7A2A007BD907 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +362,7 @@
 				760D0842203E05B900E2993E /* MissionsViewController.swift in Sources */,
 				760D0838203CD6BE00E2993E /* DJIAircraftAnnotation.swift in Sources */,
 				76CDFF54203B6AE60060CDEE /* DJIMapController.swift in Sources */,
+				766F456C204A3109007BD907 /* DJIWaypointConfigView.swift in Sources */,
 				760D083F203DF93400E2993E /* FBManager.swift in Sources */,
 				760D0834203CD41600E2993E /* DJIAircraftAnnotationView.swift in Sources */,
 			);
@@ -506,7 +518,7 @@
 				HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/Headers/Public\"";
 				INFOPLIST_FILE = DJIDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mdcinnovation.ArPro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mdcinnovation.ArProDrone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DJIDemo/DJIDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -527,7 +539,7 @@
 				HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/Headers/Public\"";
 				INFOPLIST_FILE = DJIDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mdcinnovation.ArPro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mdcinnovation.ArProDrone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DJIDemo/DJIDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>619268287871-qhk75s3kmejd8bb3udlsb30ohlomu1hg.apps.googleusercontent.com</string>
+	<string>762465786006-c90u5advc41gj81m2mqnp4d4tq1rf5fc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.619268287871-qhk75s3kmejd8bb3udlsb30ohlomu1hg</string>
+	<string>com.googleusercontent.apps.762465786006-c90u5advc41gj81m2mqnp4d4tq1rf5fc</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBwOLmT4f1nHnpkjk7pYYi3dk3v7dhNntw</string>
+	<string>AIzaSyCiUsb4VbGduizBaa4lG7PwEqlgj7INiiw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>619268287871</string>
+	<string>762465786006</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mdcinnovation.ArPro</string>
+	<string>com.mdcinnovation.ArProDrone</string>
 	<key>PROJECT_ID</key>
-	<string>djidemo-f9906</string>
+	<string>arunityproyect</string>
 	<key>STORAGE_BUCKET</key>
-	<string>djidemo-f9906.appspot.com</string>
+	<string>arunityproyect.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:619268287871:ios:f0eb3f3ad87bbacc</string>
+	<string>1:762465786006:ios:cc88dbbfbfd281cb</string>
 	<key>DATABASE_URL</key>
-	<string>https://djidemo-f9906.firebaseio.com</string>
+	<string>https://arunityproyect.firebaseio.com</string>
 </dict>
 </plist>
