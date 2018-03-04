@@ -71,9 +71,9 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         super.viewDidLoad()
         self.initUI()
         self.registerApp()
-        self.updateUI()
         self.initData()
         self.updateUI()
+        self.focusMap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,11 +104,11 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         self.statusView.isHidden = true
         
         //Main Menu
-        mainMenuView.frame = CGRect(x: Double(self.view.frame.width - 150), y: 10, width: 100, height: Double(self.view.frame.height))
+        mainMenuView.frame = CGRect(x: Double(self.view.frame.width - 150), y: 40, width: 100, height: Double(self.view.frame.height))
         self.view.addSubview(mainMenuView)
         
         //Missions Menu
-        waypointsMenuView.frame = CGRect(x: Double(self.view.frame.width - 150), y: 0, width: 100, height: Double(self.view.frame.height))
+        waypointsMenuView.frame = CGRect(x: Double(self.view.frame.width - 150), y: 40, width: 100, height: Double(self.view.frame.height - 40))
         self.view.addSubview(waypointsMenuView)
         self.waypointsMenuView.isHidden = true
         
@@ -119,7 +119,6 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         waypoingConfigView.initUI()
         self.view.addSubview(waypoingConfigView)
         self.waypoingConfigView.isHidden = true
-        
         
     }
     
@@ -280,6 +279,11 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
             self.addLog(method: "focusButtonPressed", message: "Drone_Location_Valid")
             let span = MKCoordinateSpanMake(0.001, 0.001)
             let region = MKCoordinateRegion(center: self.droneLocation!, span: span)
+            self.mapView.setRegion(region, animated: true)
+        }else if CLLocationCoordinate2DIsValid(self.userLocation!){
+            self.addLog(method: "focusButtonPressed", message: "Using_User_Location_Valid")
+            let span = MKCoordinateSpanMake(0.001, 0.001)
+            let region = MKCoordinateRegion(center: self.userLocation!, span: span)
             self.mapView.setRegion(region, animated: true)
         }else {
             self.addLog(method: "focusButtonPressed", message: "Drone_Location_Empty")

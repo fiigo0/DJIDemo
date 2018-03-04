@@ -41,6 +41,25 @@ class FBManager: NSObject {
         self.ref.child("Logs").child("mapView_viewForAnnotation_title").setValue(" ")
         self.ref.child("Logs").child("flightController_droneLocation").setValue(" ")
         self.ref.child("Logs").child("flightController_droneLocation_yaw").setValue(" ")
-    }    
+    }
+    
+    
+    func getOrders(completionHandler:@escaping ([Order]) -> ()){
+        self.ref.child("purchaseOrders").observe(DataEventType.value) { (snapshot) in
+            var ordersArray:[Order] = []
+            let data = snapshot.value as? NSDictionary
+            
+            for item in data! {
+                let values = item.value as! [String:Any]
+                let ord = Order()
+                ord.name = values["itemName"] as? String ?? " "                
+                ord.status = values["status"] as? String ?? " "
+
+                ordersArray.append(ord)
+            }
+            
+            completionHandler(ordersArray)
+        }
+    }
 }
 

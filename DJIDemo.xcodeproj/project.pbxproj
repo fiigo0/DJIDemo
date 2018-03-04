@@ -16,6 +16,23 @@
 		760D084B203FD19400E2993E /* plane24.png in Resources */ = {isa = PBXBuildFile; fileRef = 760D084A203FD19400E2993E /* plane24.png */; };
 		766F456C204A3109007BD907 /* DJIWaypointConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F456B204A3109007BD907 /* DJIWaypointConfigView.swift */; };
 		766F4572204B7A2A007BD907 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 766F4571204B7A2A007BD907 /* GoogleService-Info.plist */; };
+		766F4575204B8539007BD907 /* OrdersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F4574204B8539007BD907 /* OrdersListViewController.swift */; };
+		766F4579204B857E007BD907 /* OrderCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F4578204B857E007BD907 /* OrderCellTableViewCell.swift */; };
+		766F457B204B85BF007BD907 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F457A204B85BF007BD907 /* Global.swift */; };
+		766F457D204B8749007BD907 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F457C204B8749007BD907 /* Order.swift */; };
+		766F458A204C78F6007BD907 /* a1cardonerelay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766F457F204C78F5007BD907 /* a1cardonerelay.jpg */; };
+		766F458B204C78F6007BD907 /* cable30mts.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766F4580204C78F5007BD907 /* cable30mts.jpg */; };
+		766F458C204C78F6007BD907 /* circuitbreaker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766F4581204C78F5007BD907 /* circuitbreaker.jpg */; };
+		766F458D204C78F6007BD907 /* controlmodule.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766F4582204C78F5007BD907 /* controlmodule.jpg */; };
+		766F458E204C78F6007BD907 /* cable120mts.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766F4583204C78F5007BD907 /* cable120mts.jpg */; };
+		766F458F204C78F6007BD907 /* battery.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766F4584204C78F5007BD907 /* battery.jpg */; };
+		766F4590204C78F6007BD907 /* fuse9999.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766F4585204C78F5007BD907 /* fuse9999.jpg */; };
+		766F4591204C78F6007BD907 /* metalscrew.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766F4586204C78F5007BD907 /* metalscrew.jpg */; };
+		766F4592204C78F6007BD907 /* nylonscrew.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766F4587204C78F6007BD907 /* nylonscrew.jpg */; };
+		766F4593204C78F6007BD907 /* relay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766F4588204C78F6007BD907 /* relay.jpg */; };
+		766F4594204C78F6007BD907 /* fuse7728.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766F4589204C78F6007BD907 /* fuse7728.jpg */; };
+		766F4596204C79A8007BD907 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F4595204C79A8007BD907 /* OrderDetailViewController.swift */; };
+		766F4598204C7CE4007BD907 /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 766F4597204C7CE4007BD907 /* noimage.png */; };
 		768DBE1520374C23009B011A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DBE1420374C23009B011A /* AppDelegate.swift */; };
 		768DBE1720374C23009B011A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DBE1620374C23009B011A /* ViewController.swift */; };
 		768DBE1A20374C23009B011A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768DBE1820374C23009B011A /* Main.storyboard */; };
@@ -71,6 +88,23 @@
 		760D084A203FD19400E2993E /* plane24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane24.png; sourceTree = "<group>"; };
 		766F456B204A3109007BD907 /* DJIWaypointConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIWaypointConfigView.swift; sourceTree = "<group>"; };
 		766F4571204B7A2A007BD907 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		766F4574204B8539007BD907 /* OrdersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListViewController.swift; sourceTree = "<group>"; };
+		766F4578204B857E007BD907 /* OrderCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCellTableViewCell.swift; sourceTree = "<group>"; };
+		766F457A204B85BF007BD907 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		766F457C204B8749007BD907 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		766F457F204C78F5007BD907 /* a1cardonerelay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a1cardonerelay.jpg; sourceTree = "<group>"; };
+		766F4580204C78F5007BD907 /* cable30mts.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cable30mts.jpg; sourceTree = "<group>"; };
+		766F4581204C78F5007BD907 /* circuitbreaker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = circuitbreaker.jpg; sourceTree = "<group>"; };
+		766F4582204C78F5007BD907 /* controlmodule.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = controlmodule.jpg; sourceTree = "<group>"; };
+		766F4583204C78F5007BD907 /* cable120mts.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cable120mts.jpg; sourceTree = "<group>"; };
+		766F4584204C78F5007BD907 /* battery.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = battery.jpg; sourceTree = "<group>"; };
+		766F4585204C78F5007BD907 /* fuse9999.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fuse9999.jpg; sourceTree = "<group>"; };
+		766F4586204C78F5007BD907 /* metalscrew.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = metalscrew.jpg; sourceTree = "<group>"; };
+		766F4587204C78F6007BD907 /* nylonscrew.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nylonscrew.jpg; sourceTree = "<group>"; };
+		766F4588204C78F6007BD907 /* relay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = relay.jpg; sourceTree = "<group>"; };
+		766F4589204C78F6007BD907 /* fuse7728.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fuse7728.jpg; sourceTree = "<group>"; };
+		766F4595204C79A8007BD907 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		766F4597204C7CE4007BD907 /* noimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage.png; sourceTree = "<group>"; };
 		768DBE1120374C23009B011A /* DJIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768DBE1420374C23009B011A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		768DBE1620374C23009B011A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,11 +136,53 @@
 		766F456E204B2D5C007BD907 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				760D0841203E05B900E2993E /* MissionsViewController.swift */,
+				766F456B204A3109007BD907 /* DJIWaypointConfigView.swift */,
 				760D0837203CD6BE00E2993E /* DJIAircraftAnnotation.swift */,
 				760D0833203CD41600E2993E /* DJIAircraftAnnotationView.swift */,
 				76CDFF53203B6AE60060CDEE /* DJIMapController.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		766F4576204B855C007BD907 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				766F4577204B8566007BD907 /* Cells */,
+				766F4574204B8539007BD907 /* OrdersListViewController.swift */,
+				766F4595204C79A8007BD907 /* OrderDetailViewController.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		766F4577204B8566007BD907 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				766F4578204B857E007BD907 /* OrderCellTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		766F457E204C78EB007BD907 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				766F457F204C78F5007BD907 /* a1cardonerelay.jpg */,
+				766F4584204C78F5007BD907 /* battery.jpg */,
+				766F4580204C78F5007BD907 /* cable30mts.jpg */,
+				766F4583204C78F5007BD907 /* cable120mts.jpg */,
+				760D084A203FD19400E2993E /* plane24.png */,
+				760D0848203FD18700E2993E /* drone-2.png */,
+				760D0835203CD61E00E2993E /* drone.png */,
+				766F4581204C78F5007BD907 /* circuitbreaker.jpg */,
+				766F4582204C78F5007BD907 /* controlmodule.jpg */,
+				766F4589204C78F6007BD907 /* fuse7728.jpg */,
+				766F4585204C78F5007BD907 /* fuse9999.jpg */,
+				766F4586204C78F5007BD907 /* metalscrew.jpg */,
+				766F4597204C7CE4007BD907 /* noimage.png */,
+				766F4587204C78F6007BD907 /* nylonscrew.jpg */,
+				766F4588204C78F6007BD907 /* relay.jpg */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		768DBE0820374C23009B011A = {
@@ -132,14 +208,13 @@
 			children = (
 				768DBE1420374C23009B011A /* AppDelegate.swift */,
 				768DBE1620374C23009B011A /* ViewController.swift */,
-				760D0841203E05B900E2993E /* MissionsViewController.swift */,
-				766F456B204A3109007BD907 /* DJIWaypointConfigView.swift */,
+				766F457A204B85BF007BD907 /* Global.swift */,
+				766F457C204B8749007BD907 /* Order.swift */,
 				766F456E204B2D5C007BD907 /* Map */,
 				760D083E203DF93400E2993E /* FBManager.swift */,
+				766F4576204B855C007BD907 /* Orders */,
 				768DBE1820374C23009B011A /* Main.storyboard */,
-				760D084A203FD19400E2993E /* plane24.png */,
-				760D0848203FD18700E2993E /* drone-2.png */,
-				760D0835203CD61E00E2993E /* drone.png */,
+				766F457E204C78EB007BD907 /* Images */,
 				768DBE1B20374C23009B011A /* Assets.xcassets */,
 				768DBE1D20374C23009B011A /* LaunchScreen.storyboard */,
 				768DBE2020374C23009B011A /* Info.plist */,
@@ -263,13 +338,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				766F458E204C78F6007BD907 /* cable120mts.jpg in Resources */,
+				766F4598204C7CE4007BD907 /* noimage.png in Resources */,
+				766F4592204C78F6007BD907 /* nylonscrew.jpg in Resources */,
 				760D0836203CD61E00E2993E /* drone.png in Resources */,
 				768DBE1F20374C23009B011A /* LaunchScreen.storyboard in Resources */,
+				766F4594204C78F6007BD907 /* fuse7728.jpg in Resources */,
+				766F458C204C78F6007BD907 /* circuitbreaker.jpg in Resources */,
+				766F458D204C78F6007BD907 /* controlmodule.jpg in Resources */,
 				760D0849203FD18700E2993E /* drone-2.png in Resources */,
 				760D084B203FD19400E2993E /* plane24.png in Resources */,
+				766F458A204C78F6007BD907 /* a1cardonerelay.jpg in Resources */,
 				768DBE1C20374C23009B011A /* Assets.xcassets in Resources */,
 				768DBE1A20374C23009B011A /* Main.storyboard in Resources */,
+				766F4593204C78F6007BD907 /* relay.jpg in Resources */,
+				766F458F204C78F6007BD907 /* battery.jpg in Resources */,
 				766F4572204B7A2A007BD907 /* GoogleService-Info.plist in Resources */,
+				766F4590204C78F6007BD907 /* fuse9999.jpg in Resources */,
+				766F458B204C78F6007BD907 /* cable30mts.jpg in Resources */,
+				766F4591204C78F6007BD907 /* metalscrew.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,11 +446,16 @@
 			files = (
 				768DBE1720374C23009B011A /* ViewController.swift in Sources */,
 				768DBE1520374C23009B011A /* AppDelegate.swift in Sources */,
+				766F4579204B857E007BD907 /* OrderCellTableViewCell.swift in Sources */,
 				760D0842203E05B900E2993E /* MissionsViewController.swift in Sources */,
 				760D0838203CD6BE00E2993E /* DJIAircraftAnnotation.swift in Sources */,
 				76CDFF54203B6AE60060CDEE /* DJIMapController.swift in Sources */,
+				766F457D204B8749007BD907 /* Order.swift in Sources */,
+				766F457B204B85BF007BD907 /* Global.swift in Sources */,
 				766F456C204A3109007BD907 /* DJIWaypointConfigView.swift in Sources */,
+				766F4596204C79A8007BD907 /* OrderDetailViewController.swift in Sources */,
 				760D083F203DF93400E2993E /* FBManager.swift in Sources */,
+				766F4575204B8539007BD907 /* OrdersListViewController.swift in Sources */,
 				760D0834203CD41600E2993E /* DJIAircraftAnnotationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
