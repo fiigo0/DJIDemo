@@ -67,6 +67,9 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         return false
     }
     
+    //Delivery Order
+    var deliveryOrder:Order!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initUI()
@@ -84,6 +87,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.locationManager?.stopUpdatingLocation()
+        FBManager.sharedInstance.resetLogs()
     }
     
     func registerApp(){
@@ -130,6 +134,13 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         mapView.showsUserLocation = true
         tapGestureRecog = UITapGestureRecognizer(target: self, action: #selector(self.addWaypoints(_:)))
         self.mapView.addGestureRecognizer(self.tapGestureRecog!)
+        
+//        let deliveryLocation:CLLocation = deliveryOrder.coordinate
+//        //Need at least 2 to start the mission
+//        self.mapController.addDeliveryLocation(location: deliveryLocation, withMapView: self.mapView)
+//        let second = CLLocation(latitude: 25.670012, longitude: -101.377818)
+//        self.mapController.addDeliveryLocation(location: second, withMapView: self.mapView)
+        
     }
     
     // MARK: UITapGestureRecognizer Methods
@@ -176,6 +187,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     func productConnected(_ product: DJIBaseProduct?) {
         self.addLog(method: "productConnected", message: "Product_Connected")
         self.updateUI()
+        self.focusMap()
         if product != nil {
             let flightController = self.fetchFlightController()
             if flightController != nil {
@@ -222,13 +234,12 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     // MARK : DJIFlightControllerDelegate Methods
     
     func flightController(_ fc: DJIFlightController, didUpdate state: DJIFlightControllerState) {
-        self.addLog(method: "flightController", message: "FC_didupdateState")
         self.droneLocation = state.aircraftLocation?.coordinate
         let location = self.droneLocation ?? CLLocationCoordinate2DMake(0, 0)
-        self.addLog(method: "flightController_droneLocation", message: "\(location.latitude) - \(location.longitude)")
+        self.addLog(method: "flightController_droneLocation", message: "\(location.latitude),\(location.longitude)")
+        FBManager.sharedInstance.updateDroneLocation(location:  "\(location.latitude),\(location.longitude)")
         self.mapController.updateAircraftLocation(location: location, withMapView: self.mapView)
         let radianYaw = Float(self.getRadian(x: state.attitude.yaw))
-        self.addLog(method: "flightController_droneLocation_yaw", message: "\(radianYaw)")
         
         self.modeLbl.text = "\(state.flightMode)"
         self.gpsLbl.text = "\(state.satelliteCount)"
@@ -252,7 +263,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.isKind(of: MKPointAnnotation.self) {
             let pinView = MKPinAnnotationView.init(annotation: annotation, reuseIdentifier: "PinAnnotation")
-            pinView.pinTintColor = UIColor.purple
+            pinView.pinTintColor = UIColor.green
             return pinView
             
         } else if annotation.isKind(of: DJIAircraftAnnotation.self){            
@@ -327,42 +338,19 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     }
     @IBAction func clearWaypointsButtonPressed(_ sender: UIButton) {
         self.mapController.cleanAllPointsWithMapView(mapView: self.mapView)
+        FBManager.sharedInstance.clearWaypoints();
     }
     
     @IBAction func configMissionButtonPressed(_ sender: UIButton) {
         print("Config")
         self.waypoingConfigView.isHidden = false
         
-        
-        let wayPoints = self.mapController.wayPoints
-        // TODO: veryfy nil waypoints
-        
-        if wayPoints.count < 2 {
-            print("No or not enought waypoints for missions")
-            return
-        }
-        
-        if (self.waypointsMission != nil) {
-            self.waypointsMission?.removeAllWaypoints()
-        } else {
-            self.waypointsMission = DJIMutableWaypointMission()
-        }
-        
-        for waypoint in wayPoints {
-            if CLLocationCoordinate2DIsValid(waypoint.coordinate){
-                let waypoint = DJIWaypoint(coordinate: waypoint.coordinate)
-                self.waypointsMission?.add(waypoint)
-            }
-        }
-        
-        
+        self.initMissionController()
+     
     }
     
+    
     @IBAction func startMissionButtonPressed(_ sender: UIButton) {
-        
-        
-        self.addLog(method: "startMissionButtonPressed_state", message: "\(String(describing: self.missionOperator()?.currentState))")
-        
         self.missionOperator()?.startMission(completion: { (error) in
             if error != nil {
                 self.addLog(method: "startMissionButtonPressed", message: "Start mission failed \(error.debugDescription)")
@@ -373,14 +361,13 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     }
     
     @IBAction func stopMissionButtonPressed(_ sender: UIButton) {
-        self.missionOperator()?.stopMission(completion: { (error) in
-            if error != nil {
-                self.addLog(method: "stopMissionButtonPressed", message: "Stop mission failed \(error.debugDescription)")
-            } else {
-                self.addLog(method: "stopMissionButtonPressed", message: "Mission Stoped")
-            }
-        })
-        
+//        self.missionOperator()?.stopMission(completion: { (error) in
+//            if error != nil {
+//                self.addLog(method: "stopMissionButtonPressed", message: "Stop mission failed \(error.debugDescription)")
+//            } else {
+//                self.addLog(method: "stopMissionButtonPressed", message: "Mission Stoped")
+//            }
+//        })        
         
     }
     
@@ -401,6 +388,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     func finishBtnActionInDJIWaypointConfigViewController(waypointConfigVC: DJIWaypointConfigView) {
         UIView.animate(withDuration: 0.25) {
             self.waypoingConfigView.isHidden = true
+            
         }
         
         
@@ -418,6 +406,8 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         let mode : DJIWaypointMissionHeadingMode = DJIWaypointMissionHeadingMode(rawValue: modeNumber)!
         self.waypointsMission?.headingMode = mode
         
+        //Update DroneData Node
+        FBManager.sharedInstance.updateDroneData(node: "max_altitude", value: (self.waypoingConfigView.altitudeTextField?.text)!);        
         
         let selectedActionMode: Int = (self.waypoingConfigView.actionSegmentedControl?.selectedSegmentIndex)!
         let actionModeNumber = UInt8(selectedActionMode)
@@ -425,6 +415,8 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         self.waypointsMission?.finishedAction = actionMode
         
         self.missionOperator()?.load(self.waypointsMission!)
+        
+        self.missionOperator()?.removeAllListeners()
         
         self.missionOperator()?.addListener(toFinished: self, with: DispatchQueue.main, andBlock: { (error:Error?) in
             if error != nil {
@@ -444,6 +436,66 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         
     }
     
+    func initMissionController(){
+        let wayPoints = self.mapController.wayPoints
+        // TODO: veryfy nil waypoints
+        
+        if wayPoints.count < 2 {
+            print("No or not enought waypoints for missions")
+            return
+        }
+        
+        if (self.waypointsMission != nil) {
+            self.addLog(method: "initMissionController", message: "waypointsMission_Not_NIL")
+            self.waypointsMission?.removeAllWaypoints()
+        } else {
+            self.waypointsMission = DJIMutableWaypointMission()
+            self.addLog(method: "initMissionController", message: "waypointsMission_NIL")
+        }
+        
+        for waypoint in wayPoints {
+            if CLLocationCoordinate2DIsValid(waypoint.coordinate){
+                let waypoint = DJIWaypoint(coordinate: waypoint.coordinate)
+                self.waypointsMission?.add(waypoint)
+                self.addLog(method: "initMissionController_waypoints", message: "waypointsMission_waypoints_\(String(describing: self.waypointsMission?.waypointCount))")
+            }
+        }
+    }
+    
+    func setDefaultWaymissionSettings(){
+        
+        self.initMissionController()
+        
+        for index in 0...((self.waypointsMission?.waypointCount)! - 1)  {
+            let waypoint = self.waypointsMission?.waypoint(at: index)
+            waypoint?.altitude = 100
+        }
+        
+        self.waypointsMission?.maxFlightSpeed = 10
+        self.waypointsMission?.autoFlightSpeed = 8
+        self.waypointsMission?.headingMode = .auto
+        self.waypointsMission?.finishedAction = .goHome
+        self.missionOperator()?.load(self.waypointsMission!)
+        
+        self.missionOperator()?.removeAllListeners()
+        
+        self.missionOperator()?.addListener(toFinished: self, with: DispatchQueue.main, andBlock: { (error:Error?) in
+            if error != nil {
+                self.addLog(method: "setDefaultWaymissionSettings", message: "Mission Execution Failed : \(error.debugDescription)")
+            }else {
+                self.addLog(method: "setDefaultWaymissionSettings", message: "Mission Execution Finished")
+            }
+        })
+        
+        self.missionOperator()?.uploadMission(completion: { (error) in
+            if error != nil {
+                self.addLog(method: "setDefaultWaymissionSettings", message: "Upload Mission failed : \(error.debugDescription)")
+            } else {
+                self.addLog(method: "setDefaultWaymissionSettings", message: "Upload Mission Finished")
+            }
+        })
+    }
+    
     
     // MARK: Auxiliar Methods
     
@@ -461,6 +513,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     }
     
     func addLog(method:String,message:String) {
+        FBManager.sharedInstance.log(method: method, withMessage: " ")
         FBManager.sharedInstance.log(method: method, withMessage: message)
     }
     

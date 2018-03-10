@@ -27,11 +27,19 @@ class DJIMapController: NSObject, MKMapViewDelegate {
      *  Add Waypoints in Map View
      */
     func addPoint(point:CGPoint, withMapView mapView:MKMapView){
+        
         let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
         let location = CLLocation.init(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        
+        FBManager.sharedInstance.addWaypointEntry(index: wayPoints.count, coordenate: "\(coordinate.latitude),\(coordinate.longitude)")
+        editPoints.append(location)        
+        let annotation = MKPointAnnotation()
+        annotation.title = "x"
+        annotation.coordinate = location.coordinate
+        mapView.addAnnotation(annotation)
+    }
+    
+    func addDeliveryLocation(location:CLLocation, withMapView mapView:MKMapView){
         editPoints.append(location)
-        
         let annotation = MKPointAnnotation()
         annotation.title = "x"
         annotation.coordinate = location.coordinate

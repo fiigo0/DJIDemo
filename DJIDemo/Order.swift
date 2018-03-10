@@ -12,12 +12,12 @@ import CoreLocation
 class Order: NSObject {
     var name:String!
     var status:String!
-    var coordinate:CLLocationCoordinate2D!
+    var coordinate:CLLocation!
 
     override init() {
         super.init()
         self.name = ""
         self.status = ""
-        self.coordinate = CLLocationCoordinate2D(latitude: 25.670012, longitude: -100.377818)                
+        self.coordinate = CLLocation(latitude: 25.670012, longitude: -100.377818)
     }
 }

@@ -427,7 +427,7 @@
                                 <segment title="UntilStop"/>
                             </segments>
                         </segmentedControl>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Action After Finished:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYN-4R-Xse">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Heading:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYN-4R-Xse">
                             <rect key="frame" x="216" y="176" width="122" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -472,7 +472,7 @@
                     </connections>
                 </view>
             </objects>
-            <point key="canvasLocation" x="491" y="4294"/>
+            <point key="canvasLocation" x="491" y="4682"/>
         </scene>
         <!--Orders List View Controller-->
         <scene sceneID="zIq-Ps-wrV">
@@ -548,7 +548,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Deliver by Drone"/>
                                 <connections>
-                                    <segue destination="J88-T3-ELV" kind="show" id="Csi-v3-kky"/>
+                                    <segue destination="J88-T3-ELV" kind="show" identifier="segueIdOrderDetailToMissionView" id="Csi-v3-kky"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhN-aN-Hya">

@@ -22,25 +22,41 @@ class FBManager: NSObject {
         self.ref.child("Logs").child(method).setValue(message)
     }
     
+    func updateDroneLocation(location:String) {
+        self.ref.child("DroneData").child("coordinates").setValue(location);
+    }
+    
+    func addWaypointEntry(index:Int, coordenate:String)  {
+           self.ref.child("DroneMissionData").child("waypoints").child("\(index)").setValue(coordenate);
+    }
+    func clearWaypoints()  {
+        self.ref.child("DroneMissionData").child("waypoints").removeValue();
+    }
+    
+    func updateDroneData(node:String, value:String) {
+        self.ref.child("DroneData").child(node).setValue(value);
+    }
+    
     func resetLogs(){
-        self.ref.child("Logs").child("appRegisteredWithError").setValue(" ")
-        self.ref.child("Logs").child("fetchFlightController").setValue(" ")
-        self.ref.child("Logs").child("flightController").setValue(" ")
-        self.ref.child("Logs").child("focusButtonPressed").setValue(" ")
-        self.ref.child("Logs").child("productConnected").setValue(" ")
-        self.ref.child("Logs").child("productConnected_FC_Instanciated").setValue(" ")
-        self.ref.child("Logs").child("productDisconnected").setValue(" ")
-        self.ref.child("Logs").child("startUpdateLocation").setValue(" ")
-        self.ref.child("Logs").child("updateAircraftLocation").setValue(" ")
-        self.ref.child("Logs").child("updateAircraftLocation_location").setValue(" ")
-        self.ref.child("Logs").child("updateUI_appState").setValue(" ")
-        self.ref.child("Logs").child("updateUI_bindState").setValue(" ")
-        self.ref.child("Logs").child("startUpdateLocation").setValue(" ")
-        self.ref.child("Logs").child("startUpdateLocation_locationManager").setValue(" ")
-        self.ref.child("Logs").child("mapView_viewForAnnotation").setValue(" ")
-        self.ref.child("Logs").child("mapView_viewForAnnotation_title").setValue(" ")
-        self.ref.child("Logs").child("flightController_droneLocation").setValue(" ")
-        self.ref.child("Logs").child("flightController_droneLocation_yaw").setValue(" ")
+        self.ref.child("Logs").removeValue()
+//        self.ref.child("Logs").child("appRegisteredWithError").setValue(" ")
+//        self.ref.child("Logs").child("fetchFlightController").setValue(" ")
+//        self.ref.child("Logs").child("flightController").setValue(" ")
+//        self.ref.child("Logs").child("focusButtonPressed").setValue(" ")
+//        self.ref.child("Logs").child("productConnected").setValue(" ")
+//        self.ref.child("Logs").child("productConnected_FC_Instanciated").setValue(" ")
+//        self.ref.child("Logs").child("productDisconnected").setValue(" ")
+//        self.ref.child("Logs").child("startUpdateLocation").setValue(" ")
+//        self.ref.child("Logs").child("updateAircraftLocation").setValue(" ")
+//        self.ref.child("Logs").child("updateAircraftLocation_location").setValue(" ")
+//        self.ref.child("Logs").child("updateUI_appState").setValue(" ")
+//        self.ref.child("Logs").child("updateUI_bindState").setValue(" ")
+//        self.ref.child("Logs").child("startUpdateLocation").setValue(" ")
+//        self.ref.child("Logs").child("startUpdateLocation_locationManager").setValue(" ")
+//        self.ref.child("Logs").child("mapView_viewForAnnotation").setValue(" ")
+//        self.ref.child("Logs").child("mapView_viewForAnnotation_title").setValue(" ")
+//        self.ref.child("Logs").child("flightController_droneLocation").setValue(" ")
+//        self.ref.child("Logs").child("flightController_droneLocation_yaw").setValue(" ")
     }
     
     

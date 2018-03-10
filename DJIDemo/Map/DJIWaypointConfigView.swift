@@ -32,7 +32,7 @@ class DJIWaypointConfigView: UIView {
     }
     
     func initUI(){
-        self.altitudeTextField?.text = "100"
+        self.altitudeTextField?.text = "50"
         self.autoFlightSpeedTextField?.text = "8"
         self.maxFlightSpeedTextField?.text = "10"
         self.actionSegmentedControl?.selectedSegmentIndex = 1

@@ -13,3 +13,4 @@ let kOrderCellIdentifier = "OrderCellIdentifier"
 
 //Mark: - Segues IDs
 let ksegueIdOrderListToDetail = "segueIdOrderListToDetail"
+let ksegueIdOrderDetailToMissionView = "segueIdOrderDetailToMissionView"
