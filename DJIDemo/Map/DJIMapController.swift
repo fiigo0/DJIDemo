@@ -38,6 +38,11 @@ class DJIMapController: NSObject, MKMapViewDelegate {
         mapView.addAnnotation(annotation)
     }
     
+    func addMapCoordinate(point:CGPoint, withMapView mapView:MKMapView){
+        let coordinate = mapView.convert(point, toCoordinateFrom: mapView)        
+        FBManager.sharedInstance.updateMapLocation(location:"\(coordinate.latitude),\(coordinate.longitude)");
+    }
+    
     func addDeliveryLocation(location:CLLocation, withMapView mapView:MKMapView){
         editPoints.append(location)
         let annotation = MKPointAnnotation()

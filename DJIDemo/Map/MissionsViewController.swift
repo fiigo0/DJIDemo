@@ -63,6 +63,8 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     var editPoints:[CLLocation] = []
     var tapGestureRecog:UITapGestureRecognizer?
     var isEditingPoints:Bool = false
+    var isSettingMap:Bool = false;
+    
     override var prefersStatusBarHidden: Bool {
         return false
     }
@@ -151,6 +153,8 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         if tapGesture.state == UIGestureRecognizerState.ended {
             if self.isEditingPoints {
                 self.mapController.addPoint(point: point!, withMapView: self.mapView)
+            }else if self.isSettingMap{
+                self.mapController.addMapCoordinate(point: point!, withMapView: self.mapView)
             }
         }
     }
@@ -237,7 +241,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         self.droneLocation = state.aircraftLocation?.coordinate
         let location = self.droneLocation ?? CLLocationCoordinate2DMake(0, 0)
         self.addLog(method: "flightController_droneLocation", message: "\(location.latitude),\(location.longitude)")
-        FBManager.sharedInstance.updateDroneLocation(location:  "\(location.latitude),\(location.longitude)")
+//        FBManager.sharedInstance.updateDroneLocation(location:  "\(location.latitude),\(location.longitude)")
         self.mapController.updateAircraftLocation(location: location, withMapView: self.mapView)
         let radianYaw = Float(self.getRadian(x: state.attitude.yaw))
         
@@ -246,8 +250,10 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         self.vsLbl.text = NSString(format: "%0.1f M/S", state.velocityZ) as String
         self.hsLbl.text = NSString(format: "%0.1f M/S", sqrtf((state.velocityX * state.velocityX) + (state.velocityY * state.velocityY))) as String
         self.altLbl.text = NSString(format: "%0.1f M", state.altitude) as String
-        
         self.mapController.updateAircraftHeading(heading: radianYaw)
+        let locationString =  "\(location.latitude),\(location.longitude)"
+        FBManager.sharedInstance.updateDroneLocation(currentAltitude: self.altLbl.text! , velocity: self.vsLbl.text!, location: locationString)
+        
     }
     func getDegree(x:Double) -> Double{
         return ((x) * 180.0 / Double.pi)
@@ -361,13 +367,13 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     }
     
     @IBAction func stopMissionButtonPressed(_ sender: UIButton) {
-//        self.missionOperator()?.stopMission(completion: { (error) in
-//            if error != nil {
-//                self.addLog(method: "stopMissionButtonPressed", message: "Stop mission failed \(error.debugDescription)")
-//            } else {
-//                self.addLog(method: "stopMissionButtonPressed", message: "Mission Stoped")
-//            }
-//        })        
+        if self.isSettingMap {
+            self.isSettingMap = false
+            self.stopMenuButton.setTitle("Set Map", for: .normal)
+        } else {
+            self.isSettingMap = true
+            self.stopMenuButton.setTitle("Ok", for: .normal)
+        }
         
     }
     
@@ -407,7 +413,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
         self.waypointsMission?.headingMode = mode
         
         //Update DroneData Node
-        FBManager.sharedInstance.updateDroneData(node: "max_altitude", value: (self.waypoingConfigView.altitudeTextField?.text)!);        
+        FBManager.sharedInstance.updateDroneData(node: "max_altitude", value: (self.waypoingConfigView.altitudeTextField?.text)!);
         
         let selectedActionMode: Int = (self.waypoingConfigView.actionSegmentedControl?.selectedSegmentIndex)!
         let actionModeNumber = UInt8(selectedActionMode)

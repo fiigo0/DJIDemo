@@ -23,7 +23,15 @@ class FBManager: NSObject {
     }
     
     func updateDroneLocation(location:String) {
-        self.ref.child("DroneData").child("coordinates").setValue(location);
+//        self.ref.child("DroneData").child("coordinates").setValue(location);
+    }
+    
+    func updateDroneLocation(currentAltitude:String, velocity:String,location:String) {
+        self.ref.child("DroneData").setValue(["current_altitude":currentAltitude,"velocity":velocity,"coordinates":location]);
+    }
+    
+    func updateMapLocation(location:String) {
+        self.ref.child("MapConfiguration").child("coordinates").setValue(location);
     }
     
     func addWaypointEntry(index:Int, coordenate:String)  {
