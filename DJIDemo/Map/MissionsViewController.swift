@@ -197,6 +197,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
             if flightController != nil {
                 flightController?.delegate = self
                 self.addLog(method: "productConnected_FC_Instanciated", message: "FC_Instanciated_OK")
+                FBManager.sharedInstance.updateDroneConnectionStatus(status: "Connected");
             }else {
                 self.addLog(method: "productConnected_FC_Instanciated", message: "FC_Instanciated_NIL")
             }
@@ -206,6 +207,7 @@ class MissionsViewController: UIViewController, DJISDKManagerDelegate, DJIAppAct
     
     func productDisconnected() {
         self.addLog(method: "productDisconnected", message: "Product_Disconnected")
+        FBManager.sharedInstance.updateDroneConnectionStatus(status: "Disconnected");
         self.updateUI()
     }
     

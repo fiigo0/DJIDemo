@@ -40,7 +40,14 @@ class DJIMapController: NSObject, MKMapViewDelegate {
     
     func addMapCoordinate(point:CGPoint, withMapView mapView:MKMapView){
         let coordinate = mapView.convert(point, toCoordinateFrom: mapView)        
-        FBManager.sharedInstance.updateMapLocation(location:"\(coordinate.latitude),\(coordinate.longitude)");
+        FBManager.sharedInstance.updateMapLocation(location:"\(coordinate.latitude),\(coordinate.longitude)")
+        FBManager.sharedInstance.getDroneConnectionStatus { (status) in
+            if !status {
+                print(" is connected : \(status)")
+                FBManager.sharedInstance.updateDroneLocation(location: "\(coordinate.latitude),\(coordinate.longitude)")
+            }
+        }
+        
     }
     
     func addDeliveryLocation(location:CLLocation, withMapView mapView:MKMapView){

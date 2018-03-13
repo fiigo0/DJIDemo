@@ -23,11 +23,14 @@ class FBManager: NSObject {
     }
     
     func updateDroneLocation(location:String) {
-//        self.ref.child("DroneData").child("coordinates").setValue(location);
+        self.ref.child("DroneData").child("coordinates").setValue(location);
     }
     
     func updateDroneLocation(currentAltitude:String, velocity:String,location:String) {
         self.ref.child("DroneData").setValue(["current_altitude":currentAltitude,"velocity":velocity,"coordinates":location]);
+    }
+    func updateDroneConnectionStatus(status:String) {
+        self.ref.child("DroneData").child("drone_status").setValue(status);
     }
     
     func updateMapLocation(location:String) {
@@ -47,6 +50,7 @@ class FBManager: NSObject {
     
     func resetLogs(){
         self.ref.child("Logs").removeValue()
+        self.ref.child("DroneData").child("drone_status").setValue("Disconected");
 //        self.ref.child("Logs").child("appRegisteredWithError").setValue(" ")
 //        self.ref.child("Logs").child("fetchFlightController").setValue(" ")
 //        self.ref.child("Logs").child("flightController").setValue(" ")
@@ -66,6 +70,20 @@ class FBManager: NSObject {
 //        self.ref.child("Logs").child("flightController_droneLocation").setValue(" ")
 //        self.ref.child("Logs").child("flightController_droneLocation_yaw").setValue(" ")
     }
+    
+    func getDroneConnectionStatus(completionHandler:@escaping (Bool) -> ()){
+        self.ref.child("DroneData").child("drone_status").observeSingleEvent(of: .value) { (snapshot) in
+            let status = snapshot.value as? String;
+            print("Drone status : \(status ?? "error")");
+            if status == "Connected"{
+                completionHandler(true);
+            }else {
+                completionHandler(false);
+            }
+            
+        }
+    }
+    
     
     
     func getOrders(completionHandler:@escaping ([Order]) -> ()){
